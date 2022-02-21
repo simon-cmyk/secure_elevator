@@ -1,4 +1,9 @@
-make.exe --dry-run --always-make --keep-going --print-directory
-'make.exe' is not recognized as an internal or external command,
-operable program or batch file.
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/siom/Dokumenter/elev/secure_elevator'
+mkdir -p build
+clang -o build/main.o -c -Wall -g -std=gnu11 -fsanitize=address source/main.c
+mkdir -p build/driver
+clang -o build/driver/elevio.o -c -Wall -g -std=gnu11 -fsanitize=address source/driver/elevio.c
+clang build/main.o build/driver/elevio.o -o elevator -fsanitize=address
+make: Leaving directory '/home/siom/Dokumenter/elev/secure_elevator'
  
