@@ -18,23 +18,23 @@ void run_elevator_control(int floor){
     switch (current_elevator_state)
     {
     case AT_REST_CLOSED_DOOR:
-        open_door();
+        // open_door();
         current_elevator_state = AT_REST_OPEN_DOOR;
-        start_travel_up();
+        // start_travel_up();
         current_elevator_state = TRAVELING_UP;
-        start_travel_down();
+        // start_travel_down();
         current_elevator_state = TRAVELING_DOWN;
         break;
     case AT_REST_OPEN_DOOR:
-        close_door();
+        // close_door();
         current_elevator_state = AT_REST_CLOSED_DOOR;
         break;
     case TRAVELING_UP:
-        stop_at_floor();
+        // stop_at_floor();
         current_elevator_state = AT_REST_CLOSED_DOOR;
         break;
     case TRAVELING_DOWN:
-        stop_at_floor();
+        // stop_at_floor();
         current_elevator_state = AT_REST_CLOSED_DOOR;
         break;
     default:
