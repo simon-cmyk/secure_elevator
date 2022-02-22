@@ -9,7 +9,8 @@
         "vector": "c",
         "xutility": "c",
         "signal.h": "c",
-        "elevio.h": "c"
+        "elevio.h": "c",
+        "time.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }

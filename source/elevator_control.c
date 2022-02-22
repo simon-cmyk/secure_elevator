@@ -14,8 +14,7 @@ void run_elevator_control(int floor){
     if(floor > -1 && floor <= N_FLOORS){
         m_current_floor = floor;
     }
-    printf("floor: %d, %d \n",floor, m_current_floor);
-    elevio_motorDirection(DIRN_UP);
+    // printf("floor: %d, %d \n",floor, m_current_floor);
 
     switch (current_elevator_state)
     {
