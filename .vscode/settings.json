@@ -8,6 +8,8 @@
         "type_traits": "c",
         "vector": "c",
         "xutility": "c",
-        "signal.h": "c"
-    }
+        "signal.h": "c",
+        "elevio.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
 }

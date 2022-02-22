@@ -1,5 +1,7 @@
 #include "elevator_control.h"
 #include "driver/elevio.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int m_current_floor; 
 m_elevator_fsm_states_et current_elevator_state = AT_REST_CLOSED_DOOR;
