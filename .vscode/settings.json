@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "bit": "c",
+        "compare": "c",
+        "cstddef": "c",
+        "deque": "c",
+        "limits": "c",
+        "type_traits": "c",
+        "vector": "c",
+        "xutility": "c",
+        "signal.h": "c"
+    }
+}
