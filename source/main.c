@@ -18,6 +18,7 @@ int main(){
         int start_floor = elevio_floorSensor();
         if(start_floor > -1 && start_floor <= N_FLOORS){
             set_elevator_start_floor(start_floor);
+            break; 
         }
     }
 
