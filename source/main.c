@@ -23,7 +23,7 @@ int main(){
         elevio_motorDirection(DIRN_UP);
         int start_floor = elevio_floorSensor();
         if(start_floor > -1 && start_floor <= N_FLOORS){
-            set_elevator_start_floor(start_floor);
+            set_elevator_to_start_floor(start_floor);
             break; 
         }
     }
