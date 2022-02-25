@@ -12,13 +12,18 @@ int main(){
     elevio_init();
     
     queue_object_st test = {{0},{0}, {0}};
-    printf(test.priority, test.orders_down_from_corridor, test.orders_up_from_corridor);
+    printf("test:");
+    for (int i = 0; i < length(test.priority); i++)
+    {
+        printf("test  at i %d, %d",i ,test.priority[i]);
+    }
+    
 
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
 
     // Set elevator to floor at start. 
-    while (1)
+    while (0)
     {
         elevio_motorDirection(DIRN_UP);
         int start_floor = elevio_floorSensor();
