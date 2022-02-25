@@ -2,51 +2,69 @@
 #include "driver/elevio.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "driver/timer_control.h"
 
 int m_current_floor; 
-int m_destination_floor;
+int m_destination_floor = 3;
 
-m_elevator_fsm_states_et current_elevator_state = AT_REST_CLOSED_DOOR;
+m_elevator_fsm_states_et; 
+m_current_elevator_state = AT_REST_CLOSED_DOOR;
 
-void set_elevator_to_start_floor(int startfloor){
-    m_current_floor = startfloor;
+timer_st m_elevator_timer = {0, 0, FALSE};
+
+void elevator_control_setfloor(int floor){
+    assert(floor < 1 || floor > N_FLOORS);
+
+    m_current_floor = floor;
+    elevio_floorIndicator(m_current_floor);
 }
 
  // TODO: check if old floorlamps is still on.
-void run_elevator(int floor){
-    if(floor > 0 & floor <= N_FLOORS){
-        m_current_floor = floor;
-        //TODO: spør studass om det er ein grei måte o gjøre det på . 
-        elevio_floorIndicator(m_current_floor);
-    }
-    // printf("floor: %d, %d \n",floor, m_current_floor);
-
-    switch (current_elevator_state)
+void run_elevator(){
+    switch (m_current_elevator_state)
     {
     case AT_REST_CLOSED_DOOR:
-        current_elevator_state = AT_REST_OPEN_DOOR;
-        // start_travel_up();
-        current_elevator_state = TRAVELING_UP;
-        // start_travel_down();
-        current_elevator_state = TRAVELING_DOWN;
+        if (m_elevator_timer.is_active == FALSE) 
+        {
+            elevator_control_start_timer();
+            m_current_elevator_state = AT_REST_OPEN_DOOR;
+        } else {
+            assert(timer_done_counting(m_elevator_timer) == FALSE);
+            m_elevator_timer.is_active = FALSE;
+
+            printf("elevator done");
+            //TODO: implement get_order_from_queue
+            //get_order_from_queue()
+            //TODO: create update queue_object function
+            // update_queue_object();
+            //do that order 
+        }    
         break;
     case AT_REST_OPEN_DOOR:
-        
-        current_elevator_state = AT_REST_CLOSED_DOOR;
-
-        //TODO: implement get_order_from_queue
-        //get_order_from_queue()
+        assert(m_current_floor != IN_BETWEEN_FLOORS);
+        if (elevio_obstruction() == TRUE){ elevator_control_restart_timer;}
+        if(timer_done_counting(m_elevator_timer) == TRUE){
+            m_current_elevator_state = AT_REST_CLOSED_DOOR;
+        }
         break;
     case TRAVELING_UP:
-        if (m_current_floor == m_destination_floor){current_elevator_state = AT_REST_CLOSED_DOOR;}
-        //TODO: create update queue_object function
-        // update_queue_object();
+        if (m_current_floor == m_destination_floor){
+            m_current_elevator_state = AT_REST_CLOSED_DOOR;
+            elevio_motorDirection(DIRN_STOP);           
+        }
         break;
     case TRAVELING_DOWN:
-        if (m_current_floor == m_destination_floor){current_elevator_state = AT_REST_CLOSED_DOOR;}
-        // update_queue_object();
+        if (m_current_floor == m_destination_floor){
+            m_current_elevator_state = AT_REST_CLOSED_DOOR;
+            elevio_motorDirection(DIRN_STOP);
+        }
         break;
     default:
         break;
     }
+}
+
+void elevator_control_restart_timer(){
+    timer_st *p_timer = &m_elevator_timer;
+    timer_restart(p_timer);
 }

@@ -1,0 +1,3 @@
+- teste om døra er åpen når heisa er mellom etasjer.
+ 
+

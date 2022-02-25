@@ -1,7 +1,11 @@
 #pragma once
-void run_elevator_control(int floor);
-void set_elevator_to_start_floor(int startfloor);
-void set_elevator_floor_lamp(int floor);
+
+#define IN_BETWEEN_FLOORS -1
+
+void run_elevator_control();
+void elevator_control_set_floor(int floor);
+void elevator_control_restart_timer();
+
 typedef enum { 
     AT_REST_CLOSED_DOOR   = 0,
     AT_REST_OPEN_DOOR = 1,

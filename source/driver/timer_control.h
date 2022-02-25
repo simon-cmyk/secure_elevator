@@ -3,14 +3,18 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include <time.h>
-#include "stdbool.h"
+
+#define TIMER_SECONDS_BEFORE_DONE 3
+#define TRUE 1
+#define FALSE 0
 
 typedef struct{
     struct timeval start_time;
     int end_time;
+    int is_active;
 } timer_st;
 
-void timer_restart(timer_st* timer_obj, int new_end_time);
+void timer_restart(timer_st* timer_obj);
 
 // [delete] hvordan få til å bli konst? 
-bool timer_done_counting(timer_st timer_obj);
+int timer_done_counting(timer_st timer_obj);

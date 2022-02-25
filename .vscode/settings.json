@@ -12,7 +12,8 @@
         "elevio.h": "c",
         "time.h": "c",
         "stdbool.h": "c",
-        "elevator_control.h": "c"
+        "elevator_control.h": "c",
+        "timer_control.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }

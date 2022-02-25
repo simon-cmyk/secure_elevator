@@ -6,23 +6,13 @@
 #include "elevator_control.h"
 #include "queue_control.h"
 
-#define IN_BETWEEN_FLOORS -1
-
 int main(){
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
     elevio_init();
     
     // Set elevator to floor at start. 
-    while (1)
-    {
-        elevio_motorDirection(DIRN_UP);
-        int start_floor = elevio_floorSensor();
-        if(start_floor > -1 && start_floor <= N_FLOORS){
-            set_elevator_to_start_floor(start_floor);
-            break; 
-        }
-    }
+    initialize_elevator_to_start_floor();
 
     
     
@@ -30,16 +20,21 @@ int main(){
     while(1){
         int floor = elevio_floorSensor();
         printf("floor: %d \n", floor);
-
         if(floor != IN_BETWEEN_FLOORS){
-            run_elevator(floor);
+            elevator_control_set_floor(floor);
+            run_elevator();
         }
+        //TODO: check if floor indicator is working
         
-
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
                 int btnPressed = elevio_callButton(f, b);
                 elevio_buttonLamp(f, b, btnPressed);
+                if (btnPressed == 1)
+                {
+                    //queue_object_add_order(f, b);
+                }
+                
             }
         }
 
@@ -59,4 +54,16 @@ int main(){
 
     
     return 0;
+}
+
+void initialize_elevator_to_start_floor(){
+    while (1)
+    {
+        int start_floor = elevio_floorSensor();
+        if(start_floor > -1 && start_floor <= N_FLOORS){
+            elevator_control_set_floor(start_floor);
+            elevio_motorDirection(DIRN_STOP);
+            break; 
+        }
+    }
 }
