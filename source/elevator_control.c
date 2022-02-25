@@ -11,8 +11,7 @@ int m_destination_floor = 2;
 m_elevator_fsm_states_et; 
 m_current_elevator_state = TRAVELING_UP;
 
-timer_st m_elevator_timer;
-m_elevator_timer.is_active = 0;
+timer_st m_elevator_timer = {.is_active=0}
 
 void elevator_control_set_floor(int floor){
     assert(floor > -1 && floor < N_FLOORS);
@@ -26,23 +25,25 @@ void run_elevator(){
     switch (m_current_elevator_state)
     {
     case AT_REST_CLOSED_DOOR:
-        printf("At_rest_closed");
+        printf("At_rest_closed\n");
         elevio_motorDirection(DIRN_STOP);
         if (m_elevator_timer.is_active == FALSE) 
         {
-            printf("start timer");
+            printf("start timer\n");
             elevator_control_restart_timer();
             m_current_elevator_state = AT_REST_OPEN_DOOR;
         } else {
             assert(timer_done_counting(m_elevator_timer) == TRUE);
             m_elevator_timer.is_active = FALSE;
 
-            printf("elevator done");
+            printf("elevator done\n");
             //TODO: implement get_order_from_queue
             //get_order_from_queue()
             //TODO: create update queue_object function
             // update_queue_object();
             //do that order 
+            elevio_motorDirection(DIRN_DOWN);
+            m_elevator_fsm_states_et = TRAVELING_DOWN;
         }    
         break;
     case AT_REST_OPEN_DOOR:
@@ -53,7 +54,7 @@ void run_elevator(){
         }
         break;
     case TRAVELING_UP:
-        printf("at travelling up");
+        printf("at travelling up\n");
         if (m_current_floor == m_destination_floor){
             m_current_elevator_state = AT_REST_CLOSED_DOOR;
             elevio_motorDirection(DIRN_STOP);           
