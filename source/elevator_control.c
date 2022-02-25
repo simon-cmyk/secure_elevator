@@ -3,12 +3,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "driver/timer_control.h"
+#include <assert.h>
 
 int m_current_floor; 
 int m_destination_floor = 3;
 
 m_elevator_fsm_states_et; 
-m_current_elevator_state = AT_REST_CLOSED_DOOR;
+m_current_elevator_state = TRAVELING_UP;
 
 timer_st m_elevator_timer = {0, 0, FALSE};
 
@@ -24,7 +25,6 @@ void run_elevator(){
     switch (m_current_elevator_state)
     {
     case AT_REST_CLOSED_DOOR:
-        printf("at rest at %d", m_current_floor);
         if (m_elevator_timer.is_active == FALSE) 
         {
             elevator_control_restart_timer();
@@ -42,7 +42,6 @@ void run_elevator(){
         }    
         break;
     case AT_REST_OPEN_DOOR:
-        printf("at open door");
         assert(m_current_floor != IN_BETWEEN_FLOORS);
         if (elevio_obstruction() == TRUE){ elevator_control_restart_timer;}
         if(timer_done_counting(m_elevator_timer) == TRUE){
@@ -50,9 +49,10 @@ void run_elevator(){
         }
         break;
     case TRAVELING_UP:
+        printf("at travelling up");
         if (m_current_floor == m_destination_floor){
             m_current_elevator_state = AT_REST_CLOSED_DOOR;
-            elevio_motorDirection(DIRN_STOP);          
+            elevio_motorDirection(DIRN_STOP);           
         }
         break;
     case TRAVELING_DOWN:

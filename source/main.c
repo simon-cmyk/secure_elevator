@@ -17,7 +17,7 @@ int main(){
     // Set elevator to floor at start. 
     initialize_elevator_to_start_floor();
 
-    
+    elevio_motorDirection(DIRN_UP);
     
     //Check if elevator have arrived to new floor or if new buttons are pressed.
     while(1){
@@ -64,8 +64,7 @@ void initialize_elevator_to_start_floor(){
     {
         int start_floor = elevio_floorSensor();
         if(start_floor > -1 && start_floor <= N_FLOORS){
-            elevator_control_set_floor(start_floor);
-            elevio_motorDirection(DIRN_STOP);
+            elevator_control_set_floor(start_floor);    
             break; 
         }
     }
