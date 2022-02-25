@@ -11,7 +11,9 @@ int m_destination_floor = 2;
 m_elevator_fsm_states_et; 
 m_current_elevator_state = TRAVELING_UP;
 
-timer_st m_elevator_timer = {.is_active=0};
+timer_st m_elevator_timer;
+timer_restart(&m_elevator_timer);
+m_elevator_timer.is_active = 0;
 
 void elevator_control_set_floor(int floor){
     assert(floor > -1 && floor < N_FLOORS);
