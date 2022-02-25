@@ -71,6 +71,5 @@ void run_elevator(){
 }
 
 void elevator_control_restart_timer(){
-    timer_st *p_timer = &m_elevator_timer;
-    timer_restart(p_timer);
+    timer_restart(&m_elevator_timer);
 }
