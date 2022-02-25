@@ -10,7 +10,9 @@
         "xutility": "c",
         "signal.h": "c",
         "elevio.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "stdbool.h": "c",
+        "elevator_control.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }

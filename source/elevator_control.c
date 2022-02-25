@@ -6,16 +6,15 @@
 int m_current_floor; 
 m_elevator_fsm_states_et current_elevator_state = AT_REST_CLOSED_DOOR;
 
-void set_elevator_start_floor(int startfloor){
+void set_elevator_to_start_floor(int startfloor){
     m_current_floor = startfloor;
 }
 
-void run_elevator_control(int floor){
+void run_elevator(int floor){
     if(floor > -1 && floor <= N_FLOORS){
         m_current_floor = floor;
     }
     // printf("floor: %d, %d \n",floor, m_current_floor);
-
     switch (current_elevator_state)
     {
     case AT_REST_CLOSED_DOOR:
