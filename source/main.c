@@ -13,7 +13,7 @@ int main(){
     
     queue_object_st test = {{0},{0}, {0}};
     printf("test:");
-    for (int i = 0; i < length(test.priority); i++)
+    for (int i = 0; i < sizeof(test.priority); i++)
     {
         printf("test  at i %d, %d",i ,test.priority[i]);
     }
