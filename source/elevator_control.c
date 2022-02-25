@@ -47,7 +47,7 @@ void run_elevator(){
         break;
     case AT_REST_OPEN_DOOR:
         assert(m_current_floor != IN_BETWEEN_FLOORS);
-        if (elevio_obstruction() == TRUE){ elevator_control_restart_timer;}
+        if (elevio_obstruction() == TRUE){ elevator_control_restart_timer();}
         if(timer_done_counting(m_elevator_timer) == TRUE){
             m_current_elevator_state = AT_REST_CLOSED_DOOR;
         }

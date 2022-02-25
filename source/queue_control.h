@@ -16,6 +16,6 @@ typedef struct
 
 void queue_object_prioritize(queue_object_st *queue_obj, int order_priority_arr_index);
 void queue_object_new_order_bottom_priority(queue_object_st *queue_obj, int order_priority_arr_index);
-void queue_object_place_order(queue_object_st *queue_object, ButtonType button_type, int floor);
+void queue_object_place_order(queue_object_st *queue_object, int floor, ButtonType button_type);
 void queue_object_add_order(int button, int floor);
 

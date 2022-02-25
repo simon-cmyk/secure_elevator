@@ -22,7 +22,7 @@ int main(){
     //Check if elevator have arrived to new floor or if new buttons are pressed.
     while(1){
         int floor = elevio_floorSensor();
-        printf("floor: %d \n", floor);
+        //printf("floor: %d \n", floor);
         if(floor != IN_BETWEEN_FLOORS){
             elevator_control_set_floor(floor);
             run_elevator();
@@ -32,9 +32,9 @@ int main(){
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
                 int btnPressed = elevio_callButton(f, b);
-                elevio_buttonLamp(f, b, btnPressed);
                 if (btnPressed == 1)
                 {
+                    elevio_buttonLamp(f, b, btnPressed);
                     queue_object_add_order(f, b);
                 }
                 
@@ -68,4 +68,11 @@ void initialize_elevator_to_start_floor(){
             break; 
         }
     }
+    for(int f = 0; f < N_FLOORS; f++){
+            for(int b = 0; b < N_BUTTONS; b++){
+                    elevio_buttonLamp(f, b, 0);
+                }
+                
+            }
+        }
 }

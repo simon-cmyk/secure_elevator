@@ -3,8 +3,8 @@
 queue_object_st queue_list = {{0},{0},{-1}, 0};
 
 
-void queue_object_add_order(int button, int floor){
-    queue_object_place_order(&queue_list, button, floor);
+void queue_object_add_order(int floor, int button){
+    queue_object_place_order(&queue_list, floor, button);
 }
 
 // sets a given order in order_priority array to highest priority
@@ -34,10 +34,11 @@ void queue_object_new_order_bottom_priority(queue_object_st *queue_obj, int orde
 }
 
 // places new order in queue_object. 
-void queue_object_place_order(queue_object_st *queue_object, ButtonType button_type, int floor){
+void queue_object_place_order(queue_object_st *queue_object, int floor,  ButtonType button_type){
     int bool_order_was_placed = FALSE;
+    printf("button %d, floor %d \n", button_type, floor);
     switch (button_type){
-        printf("order placed");
+        
         case 0: 
             if(queue_object->orders_up_from_hall[floor] == 0) {
                 queue_object->orders_up_from_hall[floor] = 1;
@@ -57,6 +58,7 @@ void queue_object_place_order(queue_object_st *queue_object, ButtonType button_t
             printf("Order already placed");  
     }
     if(bool_order_was_placed == TRUE) {
+        printf("order placed");
         int index_in_order_priority = ((int) button_type + 1) * floor - 1;
         queue_object->order_priority[index_in_order_priority] = queue_object->number_of_active_orders;
         queue_object->number_of_active_orders += 1;
