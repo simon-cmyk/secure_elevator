@@ -12,7 +12,7 @@ m_current_elevator_state = AT_REST_CLOSED_DOOR;
 
 timer_st m_elevator_timer = {0, 0, FALSE};
 
-void elevator_control_setfloor(int floor){
+void elevator_control_set_floor(int floor){
     assert(floor < 1 || floor > N_FLOORS);
 
     m_current_floor = floor;

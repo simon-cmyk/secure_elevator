@@ -6,6 +6,9 @@
 #include "elevator_control.h"
 #include "queue_control.h"
 
+void initialize_elevator_to_start_floor();
+
+
 int main(){
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
