@@ -6,15 +6,15 @@
 #include <assert.h>
 
 int m_current_floor; 
-int m_destination_floor = 3;
+int m_destination_floor = 2;
 
 m_elevator_fsm_states_et; 
 m_current_elevator_state = TRAVELING_UP;
 
-timer_st m_elevator_timer = {0, 0, FALSE};
+timer_st m_elevator_timer = {1, 0, 0};
 
 void elevator_control_set_floor(int floor){
-    assert(floor < 1 || floor > N_FLOORS);
+    assert(floor > -1 && floor < N_FLOORS);
 
     m_current_floor = floor;
     elevio_floorIndicator(m_current_floor);
@@ -25,12 +25,15 @@ void run_elevator(){
     switch (m_current_elevator_state)
     {
     case AT_REST_CLOSED_DOOR:
+        printf("At_rest_closed");
+        elevio_motorDirection(DIRN_STOP);
         if (m_elevator_timer.is_active == FALSE) 
         {
+            printf("start timer");
             elevator_control_restart_timer();
             m_current_elevator_state = AT_REST_OPEN_DOOR;
         } else {
-            assert(timer_done_counting(m_elevator_timer) == FALSE);
+            assert(timer_done_counting(m_elevator_timer) == TRUE);
             m_elevator_timer.is_active = FALSE;
 
             printf("elevator done");
