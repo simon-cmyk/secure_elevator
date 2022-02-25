@@ -8,8 +8,7 @@
 int m_current_floor; 
 int m_destination_floor = 2;
 
-m_elevator_fsm_states_et; 
-m_current_elevator_state = TRAVELING_UP;
+m_elevator_fsm_states_et m_current_elevator_state = TRAVELING_UP;
 
 timer_st m_elevator_timer = {.is_active=0};
 

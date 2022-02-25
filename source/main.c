@@ -35,7 +35,7 @@ int main(){
                 elevio_buttonLamp(f, b, btnPressed);
                 if (btnPressed == 1)
                 {
-                    //queue_object_add_order(f, b);
+                    queue_object_add_order(f, b);
                 }
                 
             }
