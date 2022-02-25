@@ -49,7 +49,7 @@ int main(){
         
         if(elevio_stopButton()){
             elevio_motorDirection(DIRN_STOP);
-        break;
+            break;
         }
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
     }

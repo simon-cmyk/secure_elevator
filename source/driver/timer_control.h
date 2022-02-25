@@ -9,8 +9,7 @@
 #define FALSE 0
 
 typedef struct{
-    struct timeval start_time;
-    int end_time;
+    time_t start_time;
     int is_active;
 } timer_st;
 
