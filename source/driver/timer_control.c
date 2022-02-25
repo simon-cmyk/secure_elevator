@@ -14,7 +14,7 @@ void timer_restart(timer_st *timer_obj){
 int timer_done_counting(timer_st timer_obj) {
     time_t time_now;
     time_now = time(&time_now);
-    double time_elapsed = difftime(timer_obj.start_time, time_now);
+    double time_elapsed = difftime(time_now, timer_obj.start_time);
     printf("time_elapsed: %g \n", time_elapsed);
     return time_elapsed >= TIMER_SECONDS_BEFORE_DONE;
 }
