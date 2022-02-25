@@ -13,4 +13,3 @@ typedef struct
 
 void set_up_queue_arrays();
 
-// [innenfra/utenfra, opp/ned, etasje, ]
