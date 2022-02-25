@@ -9,21 +9,12 @@
 #define IN_BETWEEN_FLOORS -1
 
 int main(){
-    elevio_init();
-    
-    queue_object_st test = {{0},{0}, {0}};
-    printf("test:");
-    for (int i = 0; i < sizeof(test.priority); i++)
-    {
-        printf("test  at i %d, %d",i ,test.priority[i]);
-    }
-    
-
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
-
+    elevio_init();
+    
     // Set elevator to floor at start. 
-    while (0)
+    while (1)
     {
         elevio_motorDirection(DIRN_UP);
         int start_floor = elevio_floorSensor();
