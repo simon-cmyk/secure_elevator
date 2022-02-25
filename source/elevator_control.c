@@ -12,7 +12,7 @@ m_current_elevator_state = AT_REST_CLOSED_DOOR;
 
 timer_st m_elevator_timer = {0, 0, FALSE};
 
-void elevator_control_setfloor(int floor){
+void elevator_control_set_floor(int floor){
     assert(floor < 1 || floor > N_FLOORS);
 
     m_current_floor = floor;
@@ -24,9 +24,10 @@ void run_elevator(){
     switch (m_current_elevator_state)
     {
     case AT_REST_CLOSED_DOOR:
+        printf("at rest at %d", m_current_floor);
         if (m_elevator_timer.is_active == FALSE) 
         {
-            elevator_control_start_timer();
+            elevator_control_restart_timer();
             m_current_elevator_state = AT_REST_OPEN_DOOR;
         } else {
             assert(timer_done_counting(m_elevator_timer) == FALSE);
@@ -41,6 +42,7 @@ void run_elevator(){
         }    
         break;
     case AT_REST_OPEN_DOOR:
+        printf("at open door");
         assert(m_current_floor != IN_BETWEEN_FLOORS);
         if (elevio_obstruction() == TRUE){ elevator_control_restart_timer;}
         if(timer_done_counting(m_elevator_timer) == TRUE){
@@ -50,7 +52,7 @@ void run_elevator(){
     case TRAVELING_UP:
         if (m_current_floor == m_destination_floor){
             m_current_elevator_state = AT_REST_CLOSED_DOOR;
-            elevio_motorDirection(DIRN_STOP);           
+            elevio_motorDirection(DIRN_STOP);          
         }
         break;
     case TRAVELING_DOWN:
