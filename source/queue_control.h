@@ -1,7 +1,7 @@
 #pragma once
 #include "stdbool.h"
 #include "elevator_control.h"
-#include "elevio.h"
+
 
 typedef struct 
 {
@@ -13,4 +13,3 @@ typedef struct
 
 void set_up_queue_arrays();
 
-// [innenfra/utenfra, opp/ned, etasje, ]

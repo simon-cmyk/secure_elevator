@@ -1,6 +1,7 @@
 #pragma once
 void run_elevator_control(int floor);
 void set_elevator_to_start_floor(int startfloor);
+void set_elevator_floor_lamp(int floor);
 typedef enum { 
     AT_REST_CLOSED_DOOR   = 0,
     AT_REST_OPEN_DOOR = 1,
