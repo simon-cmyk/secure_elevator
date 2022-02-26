@@ -10,14 +10,12 @@ void initialize_elevator_to_start_floor();
 
 
 int main(){
-    printf("=== Example Program ===\n");
+    printf("=== Elevator start ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
     elevio_init();
     
     // Set elevator to floor at start. 
     initialize_elevator_to_start_floor();
-
-    elevio_motorDirection(DIRN_UP);
     
     //Check if elevator have arrived to new floor or if new buttons are pressed.
     while(1){
@@ -28,13 +26,11 @@ int main(){
             run_elevator();
         }
         //TODO: check if floor indicator is working
-        
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
-                int btnPressed = elevio_callButton(f, b);
-                if (btnPressed == 1)
+                if (elevio_callButton(f, b) == 1)
                 {
-                    elevio_buttonLamp(f, b, btnPressed);
+                    elevio_buttonLamp(f, b, ON);
                     queue_object_add_order(f, b);
                 }
                 
@@ -42,9 +38,9 @@ int main(){
         }
 
         if(elevio_obstruction()){
-            elevio_stopLamp(1);
+            elevio_stopLamp(ON);
         } else {
-            elevio_stopLamp(0);
+            elevio_stopLamp(OFF);
         }
         
         if(elevio_stopButton()){
@@ -71,8 +67,7 @@ void initialize_elevator_to_start_floor(){
     for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
                     elevio_buttonLamp(f, b, 0);
-                }
-                
             }
-        }
+            
+    }
 }

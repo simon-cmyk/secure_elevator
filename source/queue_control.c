@@ -1,60 +1,71 @@
 #include "queue_control.h"
-#define NO_ORDER -1
+#include <stdio.h>
 
-queue_object_st queue_list = {{0},{0},{-1}, 0};
+queue_object_st queue_list = {{0}, {0}, {0}, 0};
 
 
 void queue_object_add_order(int floor, int button){
     queue_object_place_order(&queue_list, floor, button);
 }
 
-// sets a given order in order_priority array to highest priority
-void queue_object_prioritize(queue_object_st *queue_obj, int order_priority_arr_index){
-    int old_order_priority_value = queue_obj->order_priority[order_priority_arr_index];
-    int order_priority_arr_size = sizeof(queue_obj->order_priority)/sizeof(queue_obj->order_priority[0]);
-    if (queue_obj->order_priority[order_priority_arr_index] == -1){
-        for (unsigned int i = 0; i < order_priority_arr_size; i++){
-            if (queue_obj->order_priority[i] != -1){
-                queue_obj->order_priority[i] += 1;
-            }
-        }
 
-    } else {
-        for (unsigned int i = 0; i < order_priority_arr_size; i++){
-            if ((queue_obj->order_priority[i] < old_order_priority_value) & (queue_obj->order_priority[i] != -1)){
-                queue_obj->order_priority[i] += 1;
-            }
-        }
-    }
-    queue_obj->order_priority[order_priority_arr_index] = 0;
-}
-
-// places new order in order_priority and gives it lowest priority
-void queue_object_new_order_bottom_priority(queue_object_st *queue_obj, int order_priority_arr_index){
-    queue_obj->order_priority[order_priority_arr_index] = array_handling_find_max(queue_obj->order_priority, 12) + 1;
-}
-
-// places new order in queue_object. 
 void queue_object_place_order(queue_object_st *queue_object, int floor,  ButtonType button_type){
+    printf("Button %d, floor %d \n", (int) button_type, floor);
     switch (button_type){
-        case 0: 
-            if(queue_object->orders_up_from_hall[floor] == 0) {
-                queue_object->orders_up_from_hall[floor] = 1;
+        case BUTTON_HALL_UP: 
+            if(queue_object->orders_up_from_hall[floor] == NO_ORDER) {
+                queue_object->number_of_active_orders += 1;
+                queue_object->orders_up_from_hall[floor] = queue_object->number_of_active_orders;
+                
             } break;  
-        case 1:
-            if(queue_object->orders_down_from_hall[floor] == 0) {
-                queue_object->orders_down_from_hall[floor] = 1;
+        case BUTTON_HALL_DOWN:
+            if(queue_object->orders_down_from_hall[floor] == NO_ORDER) {
+                queue_object->number_of_active_orders += 1;
+                queue_object->orders_down_from_hall[floor] = queue_object->number_of_active_orders;
             } break;  
-        case 2:
-            if(queue_object->orders_from_inside_cab[floor] == 0) {
-                queue_object->orders_from_inside_cab[floor] = 1;
+        case BUTTON_CAB:
+            if(queue_object->orders_from_inside_cab[floor] == NO_ORDER) {
+                queue_object->number_of_active_orders += 1;
+                printf("Active_orders %d \n", queue_object->number_of_active_orders);
+                printf("Active_orders %d \n", queue_object->orders_from_inside_cab[floor]);
+                queue_object->orders_from_inside_cab[floor] = queue_object->number_of_active_orders;
             } break;
     }
-        int index_in_order_priority = ((int) button_type + 1) * floor - 1;
-        if (queue_object->order_priority[index_in_order_priority] == NO_ORDER)
-        {
-            queue_object->order_priority[index_in_order_priority] = queue_object->number_of_active_orders;
-            queue_object->number_of_active_orders += 1;
+}
+
+void queue_object_remove_order(queue_object_st *queue_object, int floor,  ButtonType button_type){
+    switch (button_type){
+        case BUTTON_HALL_UP:
+            queue_object->orders_up_from_hall[floor] = NO_ORDER; 
+            break;  
+        case BUTTON_HALL_DOWN:
+            queue_object->orders_down_from_hall[floor] = NO_ORDER; 
+            break;  
+        case BUTTON_CAB:
+            queue_object->orders_from_inside_cab[floor] = NO_ORDER; 
+            break;
+    }
+    queue_object->number_of_active_orders -= 1;
+}
+
+int queue_control_get_next_order(){
+    for (int i = 0; i < N_FLOORS; i++)
+    {
+        if(queue_list.orders_from_inside_cab[i] == 1 || queue_list.orders_up_from_hall[i] == 1 || queue_list.orders_down_from_hall[i]  == 1){
+            return i;
         }
+    }
+    return NO_ACTIVE_ORDERS;
+}
+
+void queue_control_order_done(int current_floor){
+    if(queue_list.orders_up_from_hall[current_floor] != NO_ORDER){
+        queue_object_remove_order(&queue_list, current_floor, BUTTON_HALL_UP);
+    }
+    if(queue_list.orders_down_from_hall[current_floor] != NO_ORDER){
+        queue_object_remove_order(&queue_list, current_floor, BUTTON_HALL_DOWN);
+    }
+    if(queue_list.orders_from_inside_cab[current_floor] != NO_ORDER){
+        queue_object_remove_order(&queue_list, current_floor, BUTTON_CAB);
     }
 }
