@@ -1,4 +1,5 @@
 #include "queue_control.h"
+#define NO_ORDER -1
 
 queue_object_st queue_list = {{0},{0},{-1}, 0};
 
@@ -35,32 +36,25 @@ void queue_object_new_order_bottom_priority(queue_object_st *queue_obj, int orde
 
 // places new order in queue_object. 
 void queue_object_place_order(queue_object_st *queue_object, int floor,  ButtonType button_type){
-    int bool_order_was_placed = FALSE;
-    printf("button %d, floor %d \n", button_type, floor);
     switch (button_type){
-        
         case 0: 
             if(queue_object->orders_up_from_hall[floor] == 0) {
                 queue_object->orders_up_from_hall[floor] = 1;
-                bool_order_was_placed = TRUE;
             } break;  
         case 1:
             if(queue_object->orders_down_from_hall[floor] == 0) {
                 queue_object->orders_down_from_hall[floor] = 1;
-                bool_order_was_placed = TRUE;
             } break;  
         case 2:
             if(queue_object->orders_from_inside_cab[floor] == 0) {
                 queue_object->orders_from_inside_cab[floor] = 1;
-                bool_order_was_placed = TRUE;
             } break;
-        default:
-            printf("Order already placed");  
     }
-    if(bool_order_was_placed == TRUE) {
-        printf("order placed");
         int index_in_order_priority = ((int) button_type + 1) * floor - 1;
-        queue_object->order_priority[index_in_order_priority] = queue_object->number_of_active_orders;
-        queue_object->number_of_active_orders += 1;
+        if (queue_object->order_priority[index_in_order_priority] == NO_ORDER)
+        {
+            queue_object->order_priority[index_in_order_priority] = queue_object->number_of_active_orders;
+            queue_object->number_of_active_orders += 1;
+        }
     }
 }
