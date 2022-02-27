@@ -40,6 +40,10 @@ void run_elevator(){
             if(m_destination_floor == NO_ACTIVE_ORDERS){
                 break;
             }
+            if(m_destination_floor == m_current_floor){
+                timer_restart(&m_elevator_timer);
+                m_current_elevator_state = AT_REST_OPEN_DOOR;   
+            }
             if(m_destination_floor > m_current_floor){
                 m_current_elevator_state = TRAVELING_UP;
                 elevio_motorDirection(DIRN_UP);
