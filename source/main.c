@@ -13,6 +13,8 @@ int main(){
     printf("=== Elevator start ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
     elevio_init();
+
+    // print arrays test
     
     // Set elevator to floor at start. 
     initialize_elevator_to_start_floor();
@@ -23,7 +25,6 @@ int main(){
         //printf("floor: %d \n", floor);
         if(floor != IN_BETWEEN_FLOORS){
             elevator_control_set_floor(floor);
-            run_elevator();
         }
         //TODO: check if floor indicator is working
         for(int f = 0; f < N_FLOORS; f++){
@@ -47,6 +48,9 @@ int main(){
             elevio_motorDirection(DIRN_STOP);
             break;
         }
+
+        run_elevator();
+
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
     }
 

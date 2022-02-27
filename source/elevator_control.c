@@ -37,6 +37,7 @@ void run_elevator(){
             assert(timer_done_counting(m_elevator_timer) == TRUE);
 
             m_destination_floor = queue_control_get_next_order();
+            printf("dest: %d. Curr: %d \n", m_destination_floor, m_current_floor);
             if(m_destination_floor == NO_ACTIVE_ORDERS){
                 break;
             }
@@ -66,21 +67,27 @@ void run_elevator(){
         }
         break;
     case TRAVELING_UP:
+        printf("dest: %d. Curr: %d \n", m_destination_floor, m_current_floor);
         //printf("up \n");
         if (m_current_floor == m_destination_floor){
-            queue_control_order_done(m_current_floor);
-            m_current_elevator_state = AT_REST_CLOSED_DOOR;
-            elevio_motorDirection(DIRN_STOP); 
-            m_elevator_timer.is_active = FALSE;          
+            elevio_motorDirection(DIRN_STOP);
+            m_current_elevator_state = AT_REST_CLOSED_DOOR; 
+            m_elevator_timer.is_active = FALSE; 
+            queue_control_order_done(m_current_floor);         
+        } else {
+            m_destination_floor = queue_control_stop_on_way_up(m_current_floor, m_destination_floor);
         }
         break;
     case TRAVELING_DOWN:
         //printf("down \n");
+        printf("dest: %d. Curr: %d \n", m_destination_floor, m_current_floor);
         if (m_current_floor == m_destination_floor){
-            queue_control_order_done(m_current_floor);
-            m_current_elevator_state = AT_REST_CLOSED_DOOR;
             elevio_motorDirection(DIRN_STOP);
+            m_current_elevator_state = AT_REST_CLOSED_DOOR;
             m_elevator_timer.is_active = FALSE;
+            queue_control_order_done(m_current_floor);
+        } else {
+            m_destination_floor = queue_control_stop_on_way_down(m_current_floor, m_destination_floor);
         }
         break;
     default:

@@ -28,6 +28,9 @@ void queue_object_place_order(queue_object_st *queue_object, int floor,  ButtonT
                 queue_object->orders_from_inside_cab[floor] = queue_object->number_of_active_orders;
             } break;
     }
+    array_handling_print(queue_object->orders_down_from_hall, N_FLOORS);
+    array_handling_print(queue_object->orders_up_from_hall, N_FLOORS);
+    array_handling_print(queue_object->orders_from_inside_cab, N_FLOORS);
 }
 
 void decrement_priorities(queue_object_st *queue_object, int priority_threshold) {
@@ -49,11 +52,10 @@ void decrement_priorities(queue_object_st *queue_object, int priority_threshold)
                 queue_object->orders_from_inside_cab[i] -= 1;
                 priority_not_found = FALSE;
             }
-            if(priority_not_found == TRUE){
+        }
+        if(priority_not_found == TRUE){
                 break;
             }
-        }
-        
     }
     
 }
@@ -70,6 +72,7 @@ void queue_object_remove_order(queue_object_st *queue_object, int floor,  Button
             queue_object->orders_from_inside_cab[floor] = NO_ORDER; 
             break;
     }
+    queue_object->number_of_active_orders -= 1;
     decrement_priorities(queue_object ,priority);
 }
 
@@ -78,6 +81,7 @@ int queue_control_get_next_order(){
     for (int i = 0; i < N_FLOORS; i++)
     {
         if(queue_list.orders_from_inside_cab[i] == 1 || queue_list.orders_up_from_hall[i] == 1 || queue_list.orders_down_from_hall[i]  == 1){
+            printf("%d \n", i);
             return i;
         }
     }
@@ -94,4 +98,26 @@ void queue_control_order_done(int current_floor){
     if(queue_list.orders_from_inside_cab[current_floor] != NO_ORDER){
         queue_object_remove_order(&queue_list, current_floor, BUTTON_CAB, queue_list.orders_from_inside_cab[current_floor]);
     }
+}
+
+int queue_control_stop_on_way_up(int current_floor, int destination_floor){
+    for (int i = current_floor +1; i < destination_floor; i++)
+    {
+        if (queue_list.orders_up_from_hall[i] != NO_ORDER || queue_list.orders_from_inside_cab[i] != NO_ORDER)
+        {
+            return i;
+        }
+    }
+    return destination_floor;
+}
+
+int queue_control_stop_on_way_down(int current_floor, int destination_floor){
+    for (int i = current_floor -1; i > destination_floor; i--)
+    {
+        if (queue_list.orders_down_from_hall[i] != NO_ORDER || queue_list.orders_from_inside_cab[i] != NO_ORDER)
+        {
+            return i;
+        }
+    }
+    return destination_floor;
 }

@@ -1,4 +1,5 @@
 #include "array_handling.h"
+#include <stdio.h>
 
 int array_handling_find_max(int arr[], int arr_size){
     int max_val_arr = arr[0];
