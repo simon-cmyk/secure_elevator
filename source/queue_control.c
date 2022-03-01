@@ -5,11 +5,15 @@ queue_object_st queue_list = {{NO_ORDER}, {NO_ORDER}, {NO_ORDER}, 0};
 
 
 void queue_object_add_order(int floor, int button){
-    queue_object_place_order(&queue_list, floor, button);
+    queue_control_place_order_in_queue_object(&queue_list, floor, button);
+}
+
+void queue_control_place_order(int floor,  ButtonType button_type){
+    queue_control_place_order_in_queue_object(&queue_list, floor, button_type);
 }
 
 
-void queue_object_place_order(queue_object_st *queue_object, int floor,  ButtonType button_type){
+void queue_control_place_order_in_queue_object(queue_object_st *queue_object, int floor,  ButtonType button_type){
     switch (button_type){
         case BUTTON_HALL_UP: 
             if(queue_object->orders_up_from_hall[floor] == NO_ORDER) {

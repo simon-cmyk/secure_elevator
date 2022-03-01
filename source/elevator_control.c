@@ -78,10 +78,7 @@ void run_elevator_control_fsm(){
         printf("dest: %d. Curr: %d \n", m_destination_floor, m_current_floor);
         //printf("up \n");
         if (m_current_floor == m_destination_floor){
-            elevio_motorDirection(DIRN_STOP);
-            m_current_elevator_state = AT_REST_CLOSED_DOOR; 
-            m_elevator_timer.is_currently_in_use = FALSE; 
-            queue_control_order_done(m_current_floor);         
+            elevator_control_at_dest_floor();        
         } else {
             m_destination_floor = queue_control_stop_on_way_up(m_current_floor, m_destination_floor);
         }
@@ -90,10 +87,7 @@ void run_elevator_control_fsm(){
         //printf("down \n");
         printf("dest: %d. Curr: %g \n", m_destination_floor, m_current_floor);
         if (m_current_floor == m_destination_floor){
-            elevio_motorDirection(DIRN_STOP);
-            m_current_elevator_state = AT_REST_CLOSED_DOOR;
-            m_elevator_timer.is_currently_in_use = FALSE;
-            queue_control_order_done(m_current_floor);
+            elevator_control_at_dest_floor();
         } else {
             m_destination_floor = queue_control_stop_on_way_down(m_current_floor, m_destination_floor);
         }
@@ -135,4 +129,11 @@ void elevator_control_stop_button_pressed(){
     }
 
     
+}
+
+void elevator_control_at_dest_floor(){
+    elevio_motorDirection(DIRN_STOP);
+    m_current_elevator_state = AT_REST_CLOSED_DOOR; 
+    m_elevator_timer.is_currently_in_use = FALSE;
+    queue_control_order_done(m_current_floor); 
 }

@@ -29,7 +29,7 @@ int main(){
         //TODO: check if floor indicator is working
         
 
-        if(elevio_stopButton()){
+        if(elevio_stopButton() == TRUE){
             elevio_stopLamp(ON);
             elevator_control_stop_button_pressed();
         } else {
