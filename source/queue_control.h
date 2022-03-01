@@ -21,7 +21,7 @@ void queue_object_new_order_bottom_priority(queue_object_st *queue_obj, int orde
 void queue_object_place_order(queue_object_st *queue_object, int floor, ButtonType button_type);
 void queue_object_remove_order(queue_object_st *queue_object, int floor,  ButtonType button_type, int priority);
 void queue_object_add_order(int button, int floor);
-int queue_control_get_order();
+int queue_control_get_next_order();
 void queue_control_order_done(int current_floor);
 void decrement_priorities(queue_object_st *queue_object, int priority_threshold);
 int queue_control_stop_on_way_up(int current_floor, int destination_floor);

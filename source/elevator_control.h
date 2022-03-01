@@ -5,9 +5,10 @@
 #define OFF 0
 
 
-void run_elevator_control();
+void run_elevator_control_fsm();
 void elevator_control_set_floor(int floor);
 void elevator_control_turn_off_button_lamps(int floor);
+void elevator_control_stop_button_pressed();
 
 typedef enum { 
     AT_REST_CLOSED_DOOR = 0,

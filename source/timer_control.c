@@ -6,7 +6,7 @@
 void timer_restart(timer_st *timer_obj){
     time_t time_now;
     timer_obj->start_time = time(&time_now);
-    timer_obj->is_active = TRUE; 
+    timer_obj->is_currently_in_use = TRUE; 
 }
 
 // checks if timer object is done counting

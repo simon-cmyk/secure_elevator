@@ -1,6 +1,4 @@
 #pragma once
-#include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
 
 #define TIMER_SECONDS_BEFORE_DONE 3
@@ -9,7 +7,7 @@
 
 typedef struct{
     time_t start_time;
-    int is_active;
+    int is_currently_in_use;
 } timer_st;
 
 void timer_restart(timer_st* timer_obj);
