@@ -1,9 +1,5 @@
 #pragma once
 
-#define IN_BETWEEN_FLOORS -1
-#define ON 1
-#define OFF 0
-
 
 void run_elevator_control_fsm();
 void elevator_control_set_floor(int floor);

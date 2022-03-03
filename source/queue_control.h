@@ -1,10 +1,7 @@
 #pragma once
 #include "driver/elevio.h"
 #include "elevator_control.h"
-#define TRUE 1
-#define FALSE 0
-#define NO_ORDER 0
-#define NO_ACTIVE_ORDERS -1
+#include "elevator_constants.h"
 
 
 typedef struct 

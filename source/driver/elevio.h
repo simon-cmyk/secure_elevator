@@ -1,16 +1,11 @@
 #pragma once
-
-
-#define N_FLOORS 4
+#include "elevator_constants.h" 
 
 typedef enum { 
     DIRN_DOWN   = -1,
     DIRN_STOP   = 0,
     DIRN_UP     = 1
 } MotorDirection;
-
-
-#define N_BUTTONS 3
 
 typedef enum { 
     BUTTON_HALL_UP      = 0,
