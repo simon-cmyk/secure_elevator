@@ -3,8 +3,13 @@
 void run_elevator_control_fsm();
 void elevator_control_set_floor(int floor);
 void elevator_control_turn_off_button_lamps(int floor);
-void elevator_control_stop_button_pressed();
-void elevator_control_at_dest_floor();
+
+void change_state_stop_button_pressed();
+void change_state_stop_at_floor();
+void change_state_start_travel_up();
+void change_state_start_travel_down();
+void change_state_open_door();
+void change_state_close_door();
 
 typedef enum { 
     AT_REST_CLOSED_DOOR = 0,
