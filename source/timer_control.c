@@ -1,30 +1,37 @@
 #include "timer_control.h"
 
+timer_object_st m_timer = {.is_active = FALSE};
 
-
-// sets new start and end time of timer object
-void timer_restart(timer_st *timer_obj){
+void timer_object_restart(timer_object_st * p_timer_obj){
     time_t time_now;
-    timer_obj->start_time = time(&time_now);
-    timer_obj->is_currently_in_use = TRUE; 
+    p_timer_obj->start_time = time(&time_now);
+    p_timer_obj->is_active = TRUE; 
 }
 
-// checks if timer object is done counting
 // [delete] Husk å endre int til int_8 eller hva det var...
-int timer_done_counting(timer_st timer_obj) {
+int timer_object_is_done_counting(timer_object_st *p_timer_obj) {
     time_t time_now;
     time_now = time(&time_now);
-    double time_elapsed = difftime(time_now, timer_obj.start_time);
-    //printf("time_elapsed: %g \n", time_elapsed);
+    double time_elapsed = difftime(time_now, p_timer_obj->start_time);
     return time_elapsed >= TIMER_SECONDS_BEFORE_DONE;
 }
 
-// [delete] kan slette denne funksjonen før innlevering, men kan være grei å ha
-// double get_elapsed_time(struct timeval begin){
-//     struct timeval end;
-//     gettimeofday(&end, TIME_UTC);
-//     int seconds = end.tv_sec - begin.tv_sec;
-//     long mseconds = (end.tv_usec - begin.tv_usec)/1000;
-//     double elapsed = seconds + mseconds*1e-3;
-//     return elapsed;
-// }
+void timer_object_set_is_active(timer_object_st* p_timer_obj, int active){
+    p_timer_obj->is_active = active;
+}
+
+int timer_control_is_done_counting(){
+    timer_object_done_counting(&m_timer);
+}
+
+int timer_control_is_active(){
+    return m_timer.is_active;
+}
+
+int timer_control_set_is_active(int active){
+    timer_object_set_is_active(&m_timer, active);
+}
+
+void timer_control_restart(){
+    timer_object_restart(&m_timer);
+}

@@ -11,9 +11,7 @@
 double m_current_floor; 
 int m_destination_floor;
 
-m_elevator_fsm_states_et m_current_elevator_state = AT_REST_CLOSED_DOOR;
-
-timer_st m_elevator_timer = {.is_currently_in_use = FALSE};
+elevator_fsm_states_et m_current_elevator_state = AT_REST_CLOSED_DOOR;
 
 void elevator_control_set_floor(int floor){
     assert(floor > -1 && floor < N_FLOORS);
@@ -31,9 +29,9 @@ void run_elevator_control_fsm(){
         //printf("rest_closed \n");
         elevio_doorOpenLamp(OFF);
         elevio_motorDirection(DIRN_STOP);
-        if (m_elevator_timer.is_currently_in_use == FALSE) 
+        if (timer_control_is_active() == FALSE) 
         {
-            timer_restart(&m_elevator_timer);
+            timer_control_restart();
             m_current_elevator_state = AT_REST_OPEN_DOOR;
         } else {
             
@@ -44,7 +42,7 @@ void run_elevator_control_fsm(){
             }
             if(m_destination_floor == m_current_floor){
                 queue_control_order_done(m_destination_floor);
-                m_elevator_timer.is_currently_in_use = FALSE; 
+                timer_control_set_is_active(FALSE);
                 break;
             }
             else if(m_destination_floor > m_current_floor){
@@ -63,10 +61,10 @@ void run_elevator_control_fsm(){
         elevio_doorOpenLamp(ON);
         elevator_control_turn_off_button_lamps(m_current_floor);
 
-        if (elevio_obstruction() == TRUE){ timer_restart(&m_elevator_timer);}
-        else if(timer_done_counting(m_elevator_timer) == TRUE){
+        if (elevio_obstruction() == TRUE){timer_control_restart();}
+        else if(timer_control_is_done_counting() == TRUE){
             m_current_elevator_state = AT_REST_CLOSED_DOOR;
-            m_elevator_timer.is_currently_in_use = TRUE;
+            timer_control_set_is_active(TRUE);
             queue_control_order_done(m_current_floor);
             elevator_control_turn_off_button_lamps(m_current_floor);
         }
@@ -104,21 +102,21 @@ void elevator_control_stop_button_pressed(){
     {
     case TRAVELING_UP:
         m_current_floor += 0.5;
-        m_elevator_timer.is_currently_in_use = TRUE;
+        timer_control_set_is_active(TRUE);
         m_current_elevator_state = AT_REST_CLOSED_DOOR;
         break;
     case TRAVELING_DOWN:
         m_current_floor -= 0.5;
-        m_elevator_timer.is_currently_in_use = TRUE;
+        timer_control_set_is_active(TRUE);
         m_current_elevator_state = AT_REST_CLOSED_DOOR;
         break;
     case AT_REST_CLOSED_DOOR:
         if(floorf(m_current_floor) == m_current_floor) {
-            timer_restart(&m_elevator_timer);
+            timer_control_restart();
             m_current_elevator_state = AT_REST_OPEN_DOOR;
         }
     case AT_REST_OPEN_DOOR:
-        timer_restart(&m_elevator_timer);
+        timer_control_restart();
     }
     for(int floor = 0; floor < N_FLOORS; floor++){
         queue_control_order_done(floor);
@@ -131,6 +129,6 @@ void elevator_control_stop_button_pressed(){
 void elevator_control_at_dest_floor(){
     elevio_motorDirection(DIRN_STOP);
     m_current_elevator_state = AT_REST_CLOSED_DOOR; 
-    m_elevator_timer.is_currently_in_use = FALSE;
+    timer_control_set_is_active(FALSE);
     queue_control_order_done(m_current_floor); 
 }

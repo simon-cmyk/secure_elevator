@@ -11,4 +11,4 @@ typedef enum {
     AT_REST_OPEN_DOOR   = 1,
     TRAVELING_UP        = 2,
     TRAVELING_DOWN      = 3 
-} m_elevator_fsm_states_et;
+} elevator_fsm_states_et;
