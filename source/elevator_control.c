@@ -27,6 +27,7 @@ void run_elevator_control_fsm(){
     switch (m_current_elevator_state)
     {
     case AT_REST_CLOSED_DOOR:
+        //sjekk om den er i ei etasje/
         //printf("rest_closed \n");
         elevio_doorOpenLamp(OFF);
         elevio_motorDirection(DIRN_STOP);
@@ -39,21 +40,17 @@ void run_elevator_control_fsm(){
             m_destination_floor = queue_control_get_next_order();
             //printf("dest: %d. Curr: %d \n", m_destination_floor, m_current_floor);
             if(m_destination_floor == NO_ACTIVE_ORDERS){
-                printf("No active orders\n");
                 break;
             }
             if(m_destination_floor == m_current_floor){
-                printf("Equal\n");
                 queue_control_order_done(m_destination_floor);
                 m_elevator_timer.is_currently_in_use = FALSE; 
                 break;
             }
             else if(m_destination_floor > m_current_floor){
-                printf("dest > curr\n");
                 m_current_elevator_state = TRAVELING_UP;
                 elevio_motorDirection(DIRN_UP);
             } else {
-                printf("dest < curr\n");
                 m_current_elevator_state = TRAVELING_DOWN;
                 elevio_motorDirection(DIRN_DOWN);
             }

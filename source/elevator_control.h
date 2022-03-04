@@ -1,6 +1,5 @@
 #pragma once
 
-
 void run_elevator_control_fsm();
 void elevator_control_set_floor(int floor);
 void elevator_control_turn_off_button_lamps(int floor);
