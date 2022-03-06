@@ -1,0 +1,7 @@
+-skrive om testing
+- skrive diskusjon
+- skrive om moduler
+-Lage sekvensdiagram
+- lage klassediagram 
+-doxygen-dokumentasjon
+-teste systemet
