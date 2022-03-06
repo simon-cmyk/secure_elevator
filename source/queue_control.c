@@ -5,7 +5,7 @@
 queue_object_st m_queue_list = {{NO_ORDER}, {NO_ORDER}, {NO_ORDER}, 0};
 
 void queue_control_place_order(int floor,  ButtonType button_type){
-    queue_object_place_order_in_queue_object(&m_queue_list, floor, button_type);
+    queue_object_place_order_in_queue(&m_queue_list, floor, button_type);
 }
 
 void queue_object_place_order_in_queue(queue_object_st *p_queue_object, int floor,  ButtonType button_type){
@@ -84,7 +84,7 @@ int queue_control_update_next_destination_up(int current_floor, int destination_
     return destination_floor;
 }
 
-int queue_object_update_next_destination_down(int current_floor, int destination_floor){
+int queue_control_update_next_destination_down(int current_floor, int destination_floor){
     for (int i = current_floor -1; i > destination_floor; i--)
     {
         if (m_queue_list.orders_down_from_hall[i] != NO_ORDER || m_queue_list.orders_from_inside_cab[i] != NO_ORDER)

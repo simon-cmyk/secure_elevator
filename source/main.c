@@ -32,7 +32,7 @@ int main(){
 
         if(elevio_stopButton() == TRUE){
             elevio_stopLamp(ON);
-            elevator_control_stop_button_pressed();
+            change_state_stop_button_pressed();
         } else {
             elevio_stopLamp(OFF);
             for(int f = 0; f < N_FLOORS; f++){
@@ -40,7 +40,7 @@ int main(){
                     if (elevio_callButton(f, b) == 1)
                     {
                         elevio_buttonLamp(f, b, ON);
-                        queue_object_add_order(f, b);
+                        queue_control_place_order(f, b);
                     }
                 }
             }

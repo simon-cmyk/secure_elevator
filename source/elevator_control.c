@@ -4,7 +4,6 @@
 #include "queue_control.h"
 #include "driver/elevio.h"
 #include "timer_control.h"
-#include "array_handling.h"
 #include <assert.h>
 
 
@@ -30,7 +29,7 @@ void run_elevator_control_fsm(){
                 break;
             }
             if(m_destination_floor == m_current_floor){
-                queue_control_order_done(m_destination_floor);
+                queue_control_remove_orders_from_floor(m_destination_floor);
                 timer_control_set_is_active(FALSE);
                 break;
             }
@@ -51,14 +50,14 @@ void run_elevator_control_fsm(){
         if (m_current_floor == m_destination_floor){
             change_state_stop_at_floor();        
         } else {
-            m_destination_floor = queue_control_stop_on_way_up(m_current_floor, m_destination_floor);
+            m_destination_floor = queue_control_update_next_destination_up(m_current_floor, m_destination_floor);
         }
         break;
     case TRAVELING_DOWN:
         if (m_current_floor == m_destination_floor){
             change_state_stop_at_floor();
         } else {
-            m_destination_floor = queue_control_stop_on_way_down(m_current_floor, m_destination_floor);
+            m_destination_floor = queue_control_update_next_destination_down(m_current_floor, m_destination_floor);
         }
         break;
     }
@@ -72,15 +71,16 @@ void elevator_control_turn_off_button_lamps(int floor){
 }
 
 void change_state_stop_button_pressed(){
+    elevio_motorDirection(DIRN_STOP);
     switch (m_current_elevator_state)
     {
     case TRAVELING_UP:
-        m_current_floor += 0.5;
+        m_current_floor = round(m_current_floor) + 0.2;
         timer_control_set_is_active(TRUE);
         m_current_elevator_state = AT_REST_CLOSED_DOOR;
         break;
     case TRAVELING_DOWN:
-        m_current_floor -= 0.5;
+        m_current_floor = round(m_current_floor) - 0.2;
         timer_control_set_is_active(TRUE);
         m_current_elevator_state = AT_REST_CLOSED_DOOR;
         break;
@@ -93,7 +93,7 @@ void change_state_stop_button_pressed(){
         timer_control_restart();
     }
     for(int floor = 0; floor < N_FLOORS; floor++){
-        queue_control_order_done(floor);
+        queue_control_remove_orders_from_floor(floor);
         elevator_control_turn_off_button_lamps(floor);
     } 
 }
@@ -102,7 +102,7 @@ void change_state_stop_at_floor(){
     elevio_motorDirection(DIRN_STOP);
     m_current_elevator_state = AT_REST_CLOSED_DOOR; 
     timer_control_set_is_active(FALSE);
-    queue_control_order_done(m_current_floor); 
+    queue_control_remove_orders_from_floor(m_current_floor); 
 }
 
 void change_state_start_travel_up(){
@@ -124,7 +124,9 @@ void change_state_open_door(){
 
 void change_state_close_door(){
     timer_control_set_is_active(TRUE);
-    queue_control_order_done(m_current_floor);
+    queue_control_remove_orders_from_floor(m_current_floor);
+    elevator_control_turn_off_button_lamps(m_current_floor);
     m_current_elevator_state = AT_REST_CLOSED_DOOR;
+    elevio_doorOpenLamp(OFF);
 }
 // TODO: change .is_active? test stop button fleire ganger
