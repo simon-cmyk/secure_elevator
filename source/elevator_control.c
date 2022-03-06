@@ -10,7 +10,6 @@
 
 double m_current_floor; 
 int m_destination_floor;
-
 elevator_fsm_states_et m_current_elevator_state = AT_REST_CLOSED_DOOR;
 
 void elevator_control_set_floor(int floor){
@@ -18,19 +17,15 @@ void elevator_control_set_floor(int floor){
     elevio_floorIndicator(m_current_floor);
 }
 
- // TODO: check if old floorlamps is still on.
 void run_elevator_control_fsm(){
     switch (m_current_elevator_state)
     {
     case AT_REST_CLOSED_DOOR:
-        elevio_doorOpenLamp(OFF);
-        elevio_motorDirection(DIRN_STOP);
         if (timer_control_is_active() == FALSE && elevio_floorSensor() != IN_BETWEEN_FLOORS) 
         {
             change_state_open_door();
         } else {  
             m_destination_floor = queue_control_get_next_order();
-            //printf("dest: %d. Curr: %d \n", m_destination_floor, m_current_floor);
             if(m_destination_floor == NO_ACTIVE_ORDERS){
                 break;
             }
@@ -47,9 +42,6 @@ void run_elevator_control_fsm(){
         }    
         break;
     case AT_REST_OPEN_DOOR:
-        elevio_doorOpenLamp(ON);
-        elevator_control_turn_off_button_lamps(m_current_floor);
-
         if (elevio_obstruction() == TRUE){timer_control_restart();}
         else if(timer_control_is_done_counting() == TRUE){
            change_state_close_door();
@@ -63,8 +55,6 @@ void run_elevator_control_fsm(){
         }
         break;
     case TRAVELING_DOWN:
-        //printf("down \n");
-        printf("dest: %d. Curr: %g \n", m_destination_floor, m_current_floor);
         if (m_current_floor == m_destination_floor){
             change_state_stop_at_floor();
         } else {
@@ -81,7 +71,7 @@ void elevator_control_turn_off_button_lamps(int floor){
     } 
 }
 
-void elevator_control_stop_button_pressed(){
+void change_state_stop_button_pressed(){
     switch (m_current_elevator_state)
     {
     case TRAVELING_UP:
@@ -126,13 +116,15 @@ void change_state_start_travel_down(){
 }
 
 void change_state_open_door(){
+    elevio_doorOpenLamp(ON);
+    elevator_control_turn_off_button_lamps(m_current_floor);
     timer_control_restart();
     m_current_elevator_state = AT_REST_OPEN_DOOR;
 }
 
 void change_state_close_door(){
-    m_current_elevator_state = AT_REST_CLOSED_DOOR;
     timer_control_set_is_active(TRUE);
     queue_control_order_done(m_current_floor);
-    elevator_control_turn_off_button_lamps(m_current_floor);
+    m_current_elevator_state = AT_REST_CLOSED_DOOR;
 }
+// TODO: change .is_active? test stop button fleire ganger
