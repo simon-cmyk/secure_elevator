@@ -1,4 +1,6 @@
 #pragma once
+#include <stdio.h>
+#include <stdlib.h>
 // Constants used to improve readability and 
 // and make it easier to 
 //change the system
