@@ -23,7 +23,7 @@ int main(){
     printf("------------------------------\n");
     
     //Check if elevator have arrived to new floor or if new buttons are pressed.
-    while(1){
+    while(TRUE){
         int floor = elevio_floorSensor();
         //printf("floor: %d \n", floor);
         if(floor != IN_BETWEEN_FLOORS && floor >= 0 && floor <= N_FLOORS){
@@ -61,7 +61,7 @@ void initialize_elevator_to_start_floor(){
     }
     elevio_doorOpenLamp(OFF);
     elevio_motorDirection(DIRN_DOWN);
-    while (1)
+    while (TRUE)
     {
         int start_floor = elevio_floorSensor();
         if(start_floor > -1 && start_floor <= N_FLOORS){
