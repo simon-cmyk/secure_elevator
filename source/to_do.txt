@@ -1,0 +1,10 @@
+-skrive om testing
+* tenk på oppdragsgiver; alt skal være sikkert
+- skrive diskusjon
+- skrive om moduler
+-Lage sekvensdiagram
+- lage klassediagram 
+-doxygen-dokumentasjon
+-teste systemet
+* sjekk om knapp lyser dersom man trykker mens døra er åpen.
+

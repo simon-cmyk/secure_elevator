@@ -1,2 +1,7 @@
 fiks at heisa må stå stille i starten. 
-macrofil???
+Trenge man dobbelt opp med funksjoner. Ele
+[in, out] eller [out]
+endre navn
+below eller above på priorities?
+Dokumenter structs !!! Hva i svarte "#¤%&!/
+filnavn i doxygen?
