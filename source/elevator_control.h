@@ -1,8 +1,28 @@
-#pragma once
-#include "elevator_constants.h" 
+/**
+ * @file
+ * @brief A library for controlling the elevator. 
+ */
 
+#pragma once
+
+/**
+ * @brief Run finite-state-machine/elevator
+ * 
+ */
 void run_elevator_control_fsm();
+
+/**
+ * @brief Set variable @p m_current_floor to @p floor and set correct light on floor panel.
+ * 
+ * @param floor Floor integer with which to update @p m_current_floor and set ligth on floor panel.
+ */
 void elevator_control_set_floor(int floor);
+
+/**
+ * @brief 
+ * 
+ * @param floor 
+ */
 void elevator_control_turn_off_button_lamps(int floor);
 
 void change_state_stop_button_pressed();
