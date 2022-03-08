@@ -29,11 +29,17 @@ void queue_object_place_order_in_queue(queue_object_st *p_queue_object, int floo
 }
 
 void queue_object_decrement_priorities(queue_object_st *p_queue_object, int priority_threshold) { 
-    for (int i = 0; i < N_FLOORS; i++)
+    for (int floor_nr = 0; floor_nr < N_FLOORS; floor_nr++)
     {
-       if(p_queue_object->orders_down_from_hall[i] > priority_threshold){p_queue_object->orders_down_from_hall[i] -= 1;} 
-       if(p_queue_object->orders_up_from_hall[i] > priority_threshold){p_queue_object->orders_up_from_hall[i] -= 1;}
-       if(p_queue_object->orders_from_inside_cab[i] > priority_threshold){p_queue_object->orders_from_inside_cab[i] -= 1;}
+        if(p_queue_object->orders_down_from_hall[floor_nr] > priority_threshold){
+           p_queue_object->orders_down_from_hall[floor_nr] -= 1;
+        } 
+        if(p_queue_object->orders_up_from_hall[floor_nr] > priority_threshold){
+           p_queue_object->orders_up_from_hall[floor_nr] -= 1;
+        }
+        if(p_queue_object->orders_from_inside_cab[floor_nr] > priority_threshold){
+            p_queue_object->orders_from_inside_cab[floor_nr] -= 1;
+        }
     }
 }
 
@@ -52,10 +58,11 @@ void queue_object_remove_order(queue_object_st *p_queue_object, int floor,  Butt
 
 
 int queue_control_get_next_order(){
-    for (int i = 0; i < N_FLOORS; i++)
+    for (int floor_nr = 0; floor_nr < N_FLOORS; floor_nr++)
     {
-        if(m_queue_list.orders_from_inside_cab[i] == 1 || m_queue_list.orders_up_from_hall[i] == 1 || m_queue_list.orders_down_from_hall[i]  == 1){
-            return i;
+        if(m_queue_list.orders_from_inside_cab[floor_nr] == HIGHEST_PRIORITY || m_queue_list.orders_up_from_hall[floor_nr] == HIGHEST_PRIORITY || 
+            m_queue_list.orders_down_from_hall[floor_nr]  == HIGHEST_PRIORITY){
+            return floor_nr;
         }
     }
     return NO_ACTIVE_ORDERS;
@@ -74,22 +81,22 @@ void queue_control_remove_orders_from_floor(int floor){
 }
 
 int queue_control_update_next_destination_up(int current_floor, int destination_floor){
-    for (int i = current_floor +1; i < destination_floor; i++)
+    for (int floor_nr = current_floor +1; floor_nr < destination_floor; floor_nr++)
     {
-        if (m_queue_list.orders_up_from_hall[i] != NO_ORDER || m_queue_list.orders_from_inside_cab[i] != NO_ORDER)
+        if (m_queue_list.orders_up_from_hall[floor_nr] != NO_ORDER || m_queue_list.orders_from_inside_cab[floor_nr] != NO_ORDER)
         {
-            return i;
+            return floor_nr;
         }
     }
     return destination_floor;
 }
 
 int queue_control_update_next_destination_down(int current_floor, int destination_floor){
-    for (int i = current_floor -1; i > destination_floor; i--)
+    for (int floor_nr = current_floor -1; floor_nr > destination_floor; floor_nr--)
     {
-        if (m_queue_list.orders_down_from_hall[i] != NO_ORDER || m_queue_list.orders_from_inside_cab[i] != NO_ORDER)
+        if (m_queue_list.orders_down_from_hall[floor_nr] != NO_ORDER || m_queue_list.orders_from_inside_cab[floor_nr] != NO_ORDER)
         {
-            return i;
+            return floor_nr;
         }
     }
     return destination_floor;

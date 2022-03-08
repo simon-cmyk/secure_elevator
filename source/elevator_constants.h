@@ -9,8 +9,10 @@
 #define N_BUTTONS 3
 
 // Set name on magic numbers
+#define HIGHEST_PRIORITY 1
 #define TRUE 1
 #define ON 1
+#define SMALL_OFFSET 0.2
 #define FALSE 0
 #define OFF 0
 #define NO_ORDER 0

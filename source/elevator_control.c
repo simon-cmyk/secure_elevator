@@ -75,12 +75,12 @@ void change_state_stop_button_pressed(){
     switch (m_current_elevator_state)
     {
     case TRAVELING_UP:
-        m_current_floor = round(m_current_floor) + 0.2;
+        m_current_floor = round(m_current_floor) + SMALL_OFFSET;
         timer_control_set_is_active(TRUE);
         m_current_elevator_state = AT_REST_CLOSED_DOOR;
         break;
     case TRAVELING_DOWN:
-        m_current_floor = round(m_current_floor) - 0.2;
+        m_current_floor = round(m_current_floor) - SMALL_OFFSET;
         timer_control_set_is_active(TRUE);
         m_current_elevator_state = AT_REST_CLOSED_DOOR;
         break;
@@ -92,9 +92,9 @@ void change_state_stop_button_pressed(){
     case AT_REST_OPEN_DOOR:
         timer_control_restart();
     }
-    for(int floor = 0; floor < N_FLOORS; floor++){
-        queue_control_remove_orders_from_floor(floor);
-        elevator_control_turn_off_button_lamps(floor);
+    for(int floor_nr = 0; floor_nr < N_FLOORS; floor_nr++){
+        queue_control_remove_orders_from_floor(floor_nr);
+        elevator_control_turn_off_button_lamps(floor_nr);
     } 
 }
 
@@ -129,4 +129,3 @@ void change_state_close_door(){
     m_current_elevator_state = AT_REST_CLOSED_DOOR;
     elevio_doorOpenLamp(OFF);
 }
-// TODO: change .is_active? test stop button fleire ganger
