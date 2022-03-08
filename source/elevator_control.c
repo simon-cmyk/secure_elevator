@@ -86,6 +86,7 @@ void change_state_stop_button_pressed(){
         break;
     case AT_REST_CLOSED_DOOR:
         if(elevio_floorSensor() != IN_BETWEEN_FLOORS) {
+            elevio_doorOpenLamp(ON);
             timer_control_restart();
             m_current_elevator_state = AT_REST_OPEN_DOOR;
         }
