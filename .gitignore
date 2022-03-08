@@ -1,3 +1,7 @@
+# unnecessary files
+*.log
+*.json
+
 # Prerequisites
 *.d
 
