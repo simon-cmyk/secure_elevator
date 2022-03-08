@@ -1,3 +1,10 @@
+/**
+ * @file timer_control.h
+ * 
+ * @brief A group of functions for controlling the timer module.
+ * 
+ */
+
 #pragma once
 #include <time.h>
 #include "elevator_constants.h"
@@ -5,6 +12,8 @@
 /**
  * @struct timer_object_st
  * @brief Struct to function as timer when elevator is running
+ * @param start_time                @c time_t object containing time at which timer was initialized or restarted.
+ * @param is_active                 Integer/boolean to tell whether timer is active (1 if active, 0 otherwise).
  * 
  */
 typedef struct{

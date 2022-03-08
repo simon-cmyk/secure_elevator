@@ -1,5 +1,5 @@
 /** @file
- * @brief A library for performing operations on queue module
+ * @brief A group of functions for performing operations on queue module
  */
 
 #pragma once
@@ -10,7 +10,10 @@
 /** 
  * @struct queue_object_st
  * @brief A struct that contains information about elevator orders.
- *  
+ * @param orders_from_inside_cab    An array containing orders made from inside elevator panel.
+ * @param orders_up_from_hall       An array containing orders to go up from floor panel.
+ * @param orders_up_down_hall       An array containing orders to go down from floor panel.
+ * @param number_of_active_orders   An integer that corresponds to the number of active orders in queue.
  */
 typedef struct 
 {

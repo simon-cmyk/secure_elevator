@@ -1,0 +1,220 @@
+\hypertarget{queue__control_8h}{}\doxysection{source/queue\+\_\+control.h File Reference}
+\label{queue__control_8h}\index{source/queue\_control.h@{source/queue\_control.h}}
+
+
+A group of functions for performing operations on queue module.  
+
+
+{\ttfamily \#include \char`\"{}driver/elevio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}elevator\+\_\+control.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}elevator\+\_\+constants.\+h\char`\"{}}\newline
+Include dependency graph for queue\+\_\+control.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structqueue__object__st}{queue\+\_\+object\+\_\+st}}
+\begin{DoxyCompactList}\small\item\em A struct that contains information about elevator orders. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{queue__control_8h_a8e9c9233a6963d7ae8d467cfa2ddadeb}{queue\+\_\+object\+\_\+place\+\_\+order\+\_\+in\+\_\+queue}} (\mbox{\hyperlink{structqueue__object__st}{queue\+\_\+object\+\_\+st}} $\ast$p\+\_\+queue\+\_\+object, int floor, Button\+Type button\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Place elevator order in {\ttfamily p\+\_\+queue\+\_\+object} from inside {\ttfamily p\+\_\+queue\+\_\+object}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{queue__control_8h_a3255955929e67fa6fbb5258a3552a3c5}{queue\+\_\+object\+\_\+remove\+\_\+order}} (\mbox{\hyperlink{structqueue__object__st}{queue\+\_\+object\+\_\+st}} $\ast$p\+\_\+queue\+\_\+object, int floor, Button\+Type button\+\_\+type, int priority\+\_\+threshold)
+\begin{DoxyCompactList}\small\item\em Remove elevator order from {\ttfamily p\+\_\+queue\+\_\+object} from inside {\ttfamily p\+\_\+queue\+\_\+object}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{queue__control_8h_aa7e324a659688b8daa07230d0927cad9}{queue\+\_\+object\+\_\+decrement\+\_\+priorities}} (\mbox{\hyperlink{structqueue__object__st}{queue\+\_\+object\+\_\+st}} $\ast$p\+\_\+queue\+\_\+object, int priority\+\_\+threshold)
+\begin{DoxyCompactList}\small\item\em Decrement queue priorities in {\ttfamily p\+\_\+queue\+\_\+object} above a certain priority level, {\ttfamily priority\+\_\+threshold}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{queue__control_8h_a69abfad051eeb3a5ffd0900d492ac5ca}{queue\+\_\+control\+\_\+place\+\_\+order}} (int floor, Button\+Type button\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Place elevator order in {\ttfamily p\+\_\+queue\+\_\+object} from outside {\ttfamily p\+\_\+queue\+\_\+object}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{queue__control_8h_ab8b22023073d8b0fa9921d3a88657048}{queue\+\_\+control\+\_\+get\+\_\+next\+\_\+order}} ()
+\begin{DoxyCompactList}\small\item\em Get the elevator order with the highest priority from {\ttfamily p\+\_\+queue\+\_\+object}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{queue__control_8h_a35c94499c2668c3d4e52449527b65bc9}{queue\+\_\+control\+\_\+remove\+\_\+orders\+\_\+from\+\_\+floor}} (int floor)
+\begin{DoxyCompactList}\small\item\em Remove all elevator orders with @floor as destination floor. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{queue__control_8h_a612886df202622ee47ec6dc853530c18}{queue\+\_\+control\+\_\+update\+\_\+next\+\_\+destination\+\_\+up}} (int current\+\_\+floor, int destination\+\_\+floor)
+\begin{DoxyCompactList}\small\item\em Update destination floor of elevator when traveling upwards. Check if there are any orders with destination floor between {\ttfamily current\+\_\+floor} and {\ttfamily destination\+\_\+floor}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{queue__control_8h_ab8e3da70dbddf5c6f355d943ecf4732d}{queue\+\_\+control\+\_\+update\+\_\+next\+\_\+destination\+\_\+down}} (int current\+\_\+floor, int destination\+\_\+floor)
+\begin{DoxyCompactList}\small\item\em Update destination floor of elevator when traveling downwards. Check if there are any orders with destination floor between {\ttfamily current\+\_\+floor} and {\ttfamily destination\+\_\+floor}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A group of functions for performing operations on queue module. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{queue__control_8h_ab8b22023073d8b0fa9921d3a88657048}\label{queue__control_8h_ab8b22023073d8b0fa9921d3a88657048}} 
+\index{queue\_control.h@{queue\_control.h}!queue\_control\_get\_next\_order@{queue\_control\_get\_next\_order}}
+\index{queue\_control\_get\_next\_order@{queue\_control\_get\_next\_order}!queue\_control.h@{queue\_control.h}}
+\doxysubsubsection{\texorpdfstring{queue\_control\_get\_next\_order()}{queue\_control\_get\_next\_order()}}
+{\footnotesize\ttfamily int queue\+\_\+control\+\_\+get\+\_\+next\+\_\+order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the elevator order with the highest priority from {\ttfamily p\+\_\+queue\+\_\+object}. 
+
+\begin{DoxyReturn}{Returns}
+Destination floor of order with highest priority. {\ttfamily N\+O\+\_\+\+A\+C\+T\+I\+V\+E\+\_\+\+O\+R\+D\+E\+RS} if there are no active elevator orders 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file queue\+\_\+control.\+c.
+
+\mbox{\Hypertarget{queue__control_8h_a69abfad051eeb3a5ffd0900d492ac5ca}\label{queue__control_8h_a69abfad051eeb3a5ffd0900d492ac5ca}} 
+\index{queue\_control.h@{queue\_control.h}!queue\_control\_place\_order@{queue\_control\_place\_order}}
+\index{queue\_control\_place\_order@{queue\_control\_place\_order}!queue\_control.h@{queue\_control.h}}
+\doxysubsubsection{\texorpdfstring{queue\_control\_place\_order()}{queue\_control\_place\_order()}}
+{\footnotesize\ttfamily void queue\+\_\+control\+\_\+place\+\_\+order (\begin{DoxyParamCaption}\item[{int}]{floor,  }\item[{Button\+Type}]{button\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+Place elevator order in {\ttfamily p\+\_\+queue\+\_\+object} from outside {\ttfamily p\+\_\+queue\+\_\+object}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em floor} & Destination floor of order. \\
+\hline
+\mbox{\texttt{ in}}  & {\em button\+\_\+type} & Type of button pressed to initiate order. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 7 of file queue\+\_\+control.\+c.
+
+\mbox{\Hypertarget{queue__control_8h_a35c94499c2668c3d4e52449527b65bc9}\label{queue__control_8h_a35c94499c2668c3d4e52449527b65bc9}} 
+\index{queue\_control.h@{queue\_control.h}!queue\_control\_remove\_orders\_from\_floor@{queue\_control\_remove\_orders\_from\_floor}}
+\index{queue\_control\_remove\_orders\_from\_floor@{queue\_control\_remove\_orders\_from\_floor}!queue\_control.h@{queue\_control.h}}
+\doxysubsubsection{\texorpdfstring{queue\_control\_remove\_orders\_from\_floor()}{queue\_control\_remove\_orders\_from\_floor()}}
+{\footnotesize\ttfamily void queue\+\_\+control\+\_\+remove\+\_\+orders\+\_\+from\+\_\+floor (\begin{DoxyParamCaption}\item[{int}]{floor }\end{DoxyParamCaption})}
+
+
+
+Remove all elevator orders with @floor as destination floor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em floor} & Floor from which to remove all orders. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 71 of file queue\+\_\+control.\+c.
+
+\mbox{\Hypertarget{queue__control_8h_ab8e3da70dbddf5c6f355d943ecf4732d}\label{queue__control_8h_ab8e3da70dbddf5c6f355d943ecf4732d}} 
+\index{queue\_control.h@{queue\_control.h}!queue\_control\_update\_next\_destination\_down@{queue\_control\_update\_next\_destination\_down}}
+\index{queue\_control\_update\_next\_destination\_down@{queue\_control\_update\_next\_destination\_down}!queue\_control.h@{queue\_control.h}}
+\doxysubsubsection{\texorpdfstring{queue\_control\_update\_next\_destination\_down()}{queue\_control\_update\_next\_destination\_down()}}
+{\footnotesize\ttfamily int queue\+\_\+control\+\_\+update\+\_\+next\+\_\+destination\+\_\+down (\begin{DoxyParamCaption}\item[{int}]{current\+\_\+floor,  }\item[{int}]{destination\+\_\+floor }\end{DoxyParamCaption})}
+
+
+
+Update destination floor of elevator when traveling downwards. Check if there are any orders with destination floor between {\ttfamily current\+\_\+floor} and {\ttfamily destination\+\_\+floor}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em current\+\_\+floor} & Floor in which elevator currently is. \\
+\hline
+\mbox{\texttt{ in}}  & {\em destination\+\_\+floor} & Floor to which elevator is headed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Most approximate destination floor in queue between {\ttfamily current\+\_\+floor} and {\ttfamily destination\+\_\+floor}. 
+\end{DoxyReturn}
+
+
+Definition at line 94 of file queue\+\_\+control.\+c.
+
+\mbox{\Hypertarget{queue__control_8h_a612886df202622ee47ec6dc853530c18}\label{queue__control_8h_a612886df202622ee47ec6dc853530c18}} 
+\index{queue\_control.h@{queue\_control.h}!queue\_control\_update\_next\_destination\_up@{queue\_control\_update\_next\_destination\_up}}
+\index{queue\_control\_update\_next\_destination\_up@{queue\_control\_update\_next\_destination\_up}!queue\_control.h@{queue\_control.h}}
+\doxysubsubsection{\texorpdfstring{queue\_control\_update\_next\_destination\_up()}{queue\_control\_update\_next\_destination\_up()}}
+{\footnotesize\ttfamily int queue\+\_\+control\+\_\+update\+\_\+next\+\_\+destination\+\_\+up (\begin{DoxyParamCaption}\item[{int}]{current\+\_\+floor,  }\item[{int}]{destination\+\_\+floor }\end{DoxyParamCaption})}
+
+
+
+Update destination floor of elevator when traveling upwards. Check if there are any orders with destination floor between {\ttfamily current\+\_\+floor} and {\ttfamily destination\+\_\+floor}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em current\+\_\+floor} & Floor in which elevator currently is. \\
+\hline
+\mbox{\texttt{ in}}  & {\em destination\+\_\+floor} & Floor to which elevator is headed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Most approximate destination floor in queue between {\ttfamily current\+\_\+floor} and {\ttfamily destination\+\_\+floor}. 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file queue\+\_\+control.\+c.
+
+\mbox{\Hypertarget{queue__control_8h_aa7e324a659688b8daa07230d0927cad9}\label{queue__control_8h_aa7e324a659688b8daa07230d0927cad9}} 
+\index{queue\_control.h@{queue\_control.h}!queue\_object\_decrement\_priorities@{queue\_object\_decrement\_priorities}}
+\index{queue\_object\_decrement\_priorities@{queue\_object\_decrement\_priorities}!queue\_control.h@{queue\_control.h}}
+\doxysubsubsection{\texorpdfstring{queue\_object\_decrement\_priorities()}{queue\_object\_decrement\_priorities()}}
+{\footnotesize\ttfamily void queue\+\_\+object\+\_\+decrement\+\_\+priorities (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqueue__object__st}{queue\+\_\+object\+\_\+st}} $\ast$}]{p\+\_\+queue\+\_\+object,  }\item[{int}]{priority\+\_\+threshold }\end{DoxyParamCaption})}
+
+
+
+Decrement queue priorities in {\ttfamily p\+\_\+queue\+\_\+object} above a certain priority level, {\ttfamily priority\+\_\+threshold}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em p\+\_\+queue\+\_\+object} & Queue object in which to decrement priorities. \\
+\hline
+\mbox{\texttt{ in}}  & {\em priority\+\_\+threshold} & Priority level threshold above which to decrement all queue order priorities. (High priority number = low priority). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 31 of file queue\+\_\+control.\+c.
+
+\mbox{\Hypertarget{queue__control_8h_a8e9c9233a6963d7ae8d467cfa2ddadeb}\label{queue__control_8h_a8e9c9233a6963d7ae8d467cfa2ddadeb}} 
+\index{queue\_control.h@{queue\_control.h}!queue\_object\_place\_order\_in\_queue@{queue\_object\_place\_order\_in\_queue}}
+\index{queue\_object\_place\_order\_in\_queue@{queue\_object\_place\_order\_in\_queue}!queue\_control.h@{queue\_control.h}}
+\doxysubsubsection{\texorpdfstring{queue\_object\_place\_order\_in\_queue()}{queue\_object\_place\_order\_in\_queue()}}
+{\footnotesize\ttfamily void queue\+\_\+object\+\_\+place\+\_\+order\+\_\+in\+\_\+queue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqueue__object__st}{queue\+\_\+object\+\_\+st}} $\ast$}]{p\+\_\+queue\+\_\+object,  }\item[{int}]{floor,  }\item[{Button\+Type}]{button\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+Place elevator order in {\ttfamily p\+\_\+queue\+\_\+object} from inside {\ttfamily p\+\_\+queue\+\_\+object}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em p\+\_\+queue\+\_\+object} & Queue object in which to place order. \\
+\hline
+\mbox{\texttt{ in}}  & {\em floor} & Destination floor of order. \\
+\hline
+\mbox{\texttt{ in}}  & {\em button\+\_\+type} & Type of button pressed to initiate order. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 11 of file queue\+\_\+control.\+c.
+
+\mbox{\Hypertarget{queue__control_8h_a3255955929e67fa6fbb5258a3552a3c5}\label{queue__control_8h_a3255955929e67fa6fbb5258a3552a3c5}} 
+\index{queue\_control.h@{queue\_control.h}!queue\_object\_remove\_order@{queue\_object\_remove\_order}}
+\index{queue\_object\_remove\_order@{queue\_object\_remove\_order}!queue\_control.h@{queue\_control.h}}
+\doxysubsubsection{\texorpdfstring{queue\_object\_remove\_order()}{queue\_object\_remove\_order()}}
+{\footnotesize\ttfamily void queue\+\_\+object\+\_\+remove\+\_\+order (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqueue__object__st}{queue\+\_\+object\+\_\+st}} $\ast$}]{p\+\_\+queue\+\_\+object,  }\item[{int}]{floor,  }\item[{Button\+Type}]{button\+\_\+type,  }\item[{int}]{priority\+\_\+threshold }\end{DoxyParamCaption})}
+
+
+
+Remove elevator order from {\ttfamily p\+\_\+queue\+\_\+object} from inside {\ttfamily p\+\_\+queue\+\_\+object}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em p\+\_\+queue\+\_\+object} & Queue object from which to remove order. \\
+\hline
+\mbox{\texttt{ in}}  & {\em floor} & Destination floor of order to be removed. \\
+\hline
+\mbox{\texttt{ in}}  & {\em button\+\_\+type} & Type of button when initiating order to be removed \\
+\hline
+\mbox{\texttt{ in}}  & {\em priority\+\_\+threshold} & Threshold to determine the orders that need to be decremented in order to update priorities of existing orders in {\ttfamily p\+\_\+queue\+\_\+object} after order is removed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 46 of file queue\+\_\+control.\+c.
+

@@ -1,0 +1,51 @@
+\hypertarget{structqueue__object__st}{}\doxysection{queue\+\_\+object\+\_\+st Struct Reference}
+\label{structqueue__object__st}\index{queue\_object\_st@{queue\_object\_st}}
+
+
+A struct that contains information about elevator orders.  
+
+
+
+
+{\ttfamily \#include $<$queue\+\_\+control.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structqueue__object__st_a48a8355a3087b164045e400dd8f121ea}\label{structqueue__object__st_a48a8355a3087b164045e400dd8f121ea}} 
+int {\bfseries orders\+\_\+from\+\_\+inside\+\_\+cab} \mbox{[}N\+\_\+\+F\+L\+O\+O\+RS\mbox{]}
+\item 
+\mbox{\Hypertarget{structqueue__object__st_afc9a1f76fa965cec172400f3545ab499}\label{structqueue__object__st_afc9a1f76fa965cec172400f3545ab499}} 
+int {\bfseries orders\+\_\+up\+\_\+from\+\_\+hall} \mbox{[}N\+\_\+\+F\+L\+O\+O\+RS\mbox{]}
+\item 
+\mbox{\Hypertarget{structqueue__object__st_a79835c9e5b08a6277811ee24cd0a4e8d}\label{structqueue__object__st_a79835c9e5b08a6277811ee24cd0a4e8d}} 
+int {\bfseries orders\+\_\+down\+\_\+from\+\_\+hall} \mbox{[}N\+\_\+\+F\+L\+O\+O\+RS\mbox{]}
+\item 
+\mbox{\Hypertarget{structqueue__object__st_a3704b3125015787c8f5d3e02fd4b3e34}\label{structqueue__object__st_a3704b3125015787c8f5d3e02fd4b3e34}} 
+int {\bfseries number\+\_\+of\+\_\+active\+\_\+orders}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A struct that contains information about elevator orders. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em orders\+\_\+from\+\_\+inside\+\_\+cab} & An array containing orders made from inside elevator panel. \\
+\hline
+{\em orders\+\_\+up\+\_\+from\+\_\+hall} & An array containing orders to go up from floor panel. \\
+\hline
+{\em orders\+\_\+up\+\_\+down\+\_\+hall} & An array containing orders to go down from floor panel. \\
+\hline
+{\em number\+\_\+of\+\_\+active\+\_\+orders} & An integer that corresponds to the number of active orders in queue. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file queue\+\_\+control.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/\mbox{\hyperlink{queue__control_8h}{queue\+\_\+control.\+h}}\end{DoxyCompactItemize}

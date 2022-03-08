@@ -1,0 +1,214 @@
+\hypertarget{elevator__control_8h}{}\doxysection{source/elevator\+\_\+control.h File Reference}
+\label{elevator__control_8h}\index{source/elevator\_control.h@{source/elevator\_control.h}}
+
+
+A group of functions for controlling the elevator.  
+
+
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45}{elevator\+\_\+fsm\+\_\+states\+\_\+et}} \{ \mbox{\hyperlink{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45a219d399a118956d07f66ba629a838c7a}{A\+T\+\_\+\+R\+E\+S\+T\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+D\+O\+OR}} = 0, 
+\mbox{\hyperlink{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45a095e27502b1620b598c1093b0783f8fe}{A\+T\+\_\+\+R\+E\+S\+T\+\_\+\+O\+P\+E\+N\+\_\+\+D\+O\+OR}} = 1, 
+\mbox{\hyperlink{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45a685ae91a79850480c954b29b922f8cdd}{T\+R\+A\+V\+E\+L\+I\+N\+G\+\_\+\+UP}} = 2, 
+\mbox{\hyperlink{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45a34825103889e9914c2b4f812438ab181}{T\+R\+A\+V\+E\+L\+I\+N\+G\+\_\+\+D\+O\+WN}} = 3
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{elevator__control_8h_a4596fc1fc0ebe3cd4931a91f8b20c777}{run\+\_\+elevator\+\_\+control\+\_\+fsm}} ()
+\begin{DoxyCompactList}\small\item\em Run finite-\/state machine/ elevator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{elevator__control_8h_a68e494b1104433843f9e7939d1b1b7b0}{elevator\+\_\+control\+\_\+set\+\_\+floor}} (int floor)
+\begin{DoxyCompactList}\small\item\em Set variable {\ttfamily m\+\_\+current\+\_\+floor} to {\ttfamily floor} and set correct light on floor panel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{elevator__control_8h_a4f9986dc567a4e6d1a43e9e059855b3f}{elevator\+\_\+control\+\_\+turn\+\_\+off\+\_\+button\+\_\+lamps}} (int floor)
+\begin{DoxyCompactList}\small\item\em Turn off all button lamps in {\ttfamily floor}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{elevator__control_8h_a8cff159e697c531cb2f2652638755dd1}{change\+\_\+state\+\_\+stop\+\_\+button\+\_\+pressed}} ()
+\begin{DoxyCompactList}\small\item\em Change state in finite-\/state machine to {\ttfamily A\+T\+\_\+\+R\+E\+S\+T\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+D\+O\+OR} in case stop button is pressed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{elevator__control_8h_ae4e155ac416f418892d1124486400899}{change\+\_\+state\+\_\+stop\+\_\+at\+\_\+floor}} ()
+\begin{DoxyCompactList}\small\item\em Change state in finite-\/state machine to {\ttfamily A\+T\+\_\+\+R\+E\+S\+T\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+D\+O\+OR}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{elevator__control_8h_aa935c06677badd1c00ec1bac0aa81569}{change\+\_\+state\+\_\+start\+\_\+travel\+\_\+up}} ()
+\begin{DoxyCompactList}\small\item\em Change state in finite-\/state machine to {\ttfamily T\+R\+A\+V\+E\+L\+I\+N\+G\+\_\+\+UP}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{elevator__control_8h_af854534ea198336e1dbebfe607b5ec7b}{change\+\_\+state\+\_\+start\+\_\+travel\+\_\+down}} ()
+\begin{DoxyCompactList}\small\item\em Change state in finite-\/state machine to {\ttfamily T\+R\+A\+V\+E\+L\+I\+N\+G\+\_\+\+D\+O\+WN}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{elevator__control_8h_a2ce6132dc7d73a70aefaf1e07c199d18}{change\+\_\+state\+\_\+open\+\_\+door}} ()
+\begin{DoxyCompactList}\small\item\em Change state in finite-\/state machine to {\ttfamily A\+T\+\_\+\+R\+E\+S\+T\+\_\+\+O\+P\+E\+N\+\_\+\+D\+O\+OR}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{elevator__control_8h_a1643486dcaa466227aaba32bd62a527d}{change\+\_\+state\+\_\+close\+\_\+door}} ()
+\begin{DoxyCompactList}\small\item\em Change state in finite-\/state machine to {\ttfamily A\+T\+\_\+\+R\+E\+S\+T\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+D\+O\+OR}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A group of functions for controlling the elevator. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45}\label{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45}} 
+\index{elevator\_control.h@{elevator\_control.h}!elevator\_fsm\_states\_et@{elevator\_fsm\_states\_et}}
+\index{elevator\_fsm\_states\_et@{elevator\_fsm\_states\_et}!elevator\_control.h@{elevator\_control.h}}
+\doxysubsubsection{\texorpdfstring{elevator\_fsm\_states\_et}{elevator\_fsm\_states\_et}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45}{elevator\+\_\+fsm\+\_\+states\+\_\+et}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AT\_REST\_CLOSED\_DOOR@{AT\_REST\_CLOSED\_DOOR}!elevator\_control.h@{elevator\_control.h}}\index{elevator\_control.h@{elevator\_control.h}!AT\_REST\_CLOSED\_DOOR@{AT\_REST\_CLOSED\_DOOR}}}\mbox{\Hypertarget{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45a219d399a118956d07f66ba629a838c7a}\label{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45a219d399a118956d07f66ba629a838c7a}} 
+A\+T\+\_\+\+R\+E\+S\+T\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+D\+O\+OR&Elevator is not moving and door is closed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AT\_REST\_OPEN\_DOOR@{AT\_REST\_OPEN\_DOOR}!elevator\_control.h@{elevator\_control.h}}\index{elevator\_control.h@{elevator\_control.h}!AT\_REST\_OPEN\_DOOR@{AT\_REST\_OPEN\_DOOR}}}\mbox{\Hypertarget{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45a095e27502b1620b598c1093b0783f8fe}\label{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45a095e27502b1620b598c1093b0783f8fe}} 
+A\+T\+\_\+\+R\+E\+S\+T\+\_\+\+O\+P\+E\+N\+\_\+\+D\+O\+OR&Elevator is not moving and door is open. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRAVELING\_UP@{TRAVELING\_UP}!elevator\_control.h@{elevator\_control.h}}\index{elevator\_control.h@{elevator\_control.h}!TRAVELING\_UP@{TRAVELING\_UP}}}\mbox{\Hypertarget{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45a685ae91a79850480c954b29b922f8cdd}\label{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45a685ae91a79850480c954b29b922f8cdd}} 
+T\+R\+A\+V\+E\+L\+I\+N\+G\+\_\+\+UP&Elevator is traveling upwards. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRAVELING\_DOWN@{TRAVELING\_DOWN}!elevator\_control.h@{elevator\_control.h}}\index{elevator\_control.h@{elevator\_control.h}!TRAVELING\_DOWN@{TRAVELING\_DOWN}}}\mbox{\Hypertarget{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45a34825103889e9914c2b4f812438ab181}\label{elevator__control_8h_ab248e43e75c5f467dda31291ce295b45a34825103889e9914c2b4f812438ab181}} 
+T\+R\+A\+V\+E\+L\+I\+N\+G\+\_\+\+D\+O\+WN&Elevator is traveling downwards. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 70 of file elevator\+\_\+control.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{elevator__control_8h_a1643486dcaa466227aaba32bd62a527d}\label{elevator__control_8h_a1643486dcaa466227aaba32bd62a527d}} 
+\index{elevator\_control.h@{elevator\_control.h}!change\_state\_close\_door@{change\_state\_close\_door}}
+\index{change\_state\_close\_door@{change\_state\_close\_door}!elevator\_control.h@{elevator\_control.h}}
+\doxysubsubsection{\texorpdfstring{change\_state\_close\_door()}{change\_state\_close\_door()}}
+{\footnotesize\ttfamily void change\+\_\+state\+\_\+close\+\_\+door (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Change state in finite-\/state machine to {\ttfamily A\+T\+\_\+\+R\+E\+S\+T\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+D\+O\+OR}. 
+
+
+
+Definition at line 126 of file elevator\+\_\+control.\+c.
+
+\mbox{\Hypertarget{elevator__control_8h_a2ce6132dc7d73a70aefaf1e07c199d18}\label{elevator__control_8h_a2ce6132dc7d73a70aefaf1e07c199d18}} 
+\index{elevator\_control.h@{elevator\_control.h}!change\_state\_open\_door@{change\_state\_open\_door}}
+\index{change\_state\_open\_door@{change\_state\_open\_door}!elevator\_control.h@{elevator\_control.h}}
+\doxysubsubsection{\texorpdfstring{change\_state\_open\_door()}{change\_state\_open\_door()}}
+{\footnotesize\ttfamily void change\+\_\+state\+\_\+open\+\_\+door (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Change state in finite-\/state machine to {\ttfamily A\+T\+\_\+\+R\+E\+S\+T\+\_\+\+O\+P\+E\+N\+\_\+\+D\+O\+OR}. 
+
+
+
+Definition at line 119 of file elevator\+\_\+control.\+c.
+
+\mbox{\Hypertarget{elevator__control_8h_af854534ea198336e1dbebfe607b5ec7b}\label{elevator__control_8h_af854534ea198336e1dbebfe607b5ec7b}} 
+\index{elevator\_control.h@{elevator\_control.h}!change\_state\_start\_travel\_down@{change\_state\_start\_travel\_down}}
+\index{change\_state\_start\_travel\_down@{change\_state\_start\_travel\_down}!elevator\_control.h@{elevator\_control.h}}
+\doxysubsubsection{\texorpdfstring{change\_state\_start\_travel\_down()}{change\_state\_start\_travel\_down()}}
+{\footnotesize\ttfamily void change\+\_\+state\+\_\+start\+\_\+travel\+\_\+down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Change state in finite-\/state machine to {\ttfamily T\+R\+A\+V\+E\+L\+I\+N\+G\+\_\+\+D\+O\+WN}. 
+
+
+
+Definition at line 114 of file elevator\+\_\+control.\+c.
+
+\mbox{\Hypertarget{elevator__control_8h_aa935c06677badd1c00ec1bac0aa81569}\label{elevator__control_8h_aa935c06677badd1c00ec1bac0aa81569}} 
+\index{elevator\_control.h@{elevator\_control.h}!change\_state\_start\_travel\_up@{change\_state\_start\_travel\_up}}
+\index{change\_state\_start\_travel\_up@{change\_state\_start\_travel\_up}!elevator\_control.h@{elevator\_control.h}}
+\doxysubsubsection{\texorpdfstring{change\_state\_start\_travel\_up()}{change\_state\_start\_travel\_up()}}
+{\footnotesize\ttfamily void change\+\_\+state\+\_\+start\+\_\+travel\+\_\+up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Change state in finite-\/state machine to {\ttfamily T\+R\+A\+V\+E\+L\+I\+N\+G\+\_\+\+UP}. 
+
+
+
+Definition at line 109 of file elevator\+\_\+control.\+c.
+
+\mbox{\Hypertarget{elevator__control_8h_ae4e155ac416f418892d1124486400899}\label{elevator__control_8h_ae4e155ac416f418892d1124486400899}} 
+\index{elevator\_control.h@{elevator\_control.h}!change\_state\_stop\_at\_floor@{change\_state\_stop\_at\_floor}}
+\index{change\_state\_stop\_at\_floor@{change\_state\_stop\_at\_floor}!elevator\_control.h@{elevator\_control.h}}
+\doxysubsubsection{\texorpdfstring{change\_state\_stop\_at\_floor()}{change\_state\_stop\_at\_floor()}}
+{\footnotesize\ttfamily void change\+\_\+state\+\_\+stop\+\_\+at\+\_\+floor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Change state in finite-\/state machine to {\ttfamily A\+T\+\_\+\+R\+E\+S\+T\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+D\+O\+OR}. 
+
+
+
+Definition at line 102 of file elevator\+\_\+control.\+c.
+
+\mbox{\Hypertarget{elevator__control_8h_a8cff159e697c531cb2f2652638755dd1}\label{elevator__control_8h_a8cff159e697c531cb2f2652638755dd1}} 
+\index{elevator\_control.h@{elevator\_control.h}!change\_state\_stop\_button\_pressed@{change\_state\_stop\_button\_pressed}}
+\index{change\_state\_stop\_button\_pressed@{change\_state\_stop\_button\_pressed}!elevator\_control.h@{elevator\_control.h}}
+\doxysubsubsection{\texorpdfstring{change\_state\_stop\_button\_pressed()}{change\_state\_stop\_button\_pressed()}}
+{\footnotesize\ttfamily void change\+\_\+state\+\_\+stop\+\_\+button\+\_\+pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Change state in finite-\/state machine to {\ttfamily A\+T\+\_\+\+R\+E\+S\+T\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+D\+O\+OR} in case stop button is pressed. 
+
+
+
+Definition at line 73 of file elevator\+\_\+control.\+c.
+
+\mbox{\Hypertarget{elevator__control_8h_a68e494b1104433843f9e7939d1b1b7b0}\label{elevator__control_8h_a68e494b1104433843f9e7939d1b1b7b0}} 
+\index{elevator\_control.h@{elevator\_control.h}!elevator\_control\_set\_floor@{elevator\_control\_set\_floor}}
+\index{elevator\_control\_set\_floor@{elevator\_control\_set\_floor}!elevator\_control.h@{elevator\_control.h}}
+\doxysubsubsection{\texorpdfstring{elevator\_control\_set\_floor()}{elevator\_control\_set\_floor()}}
+{\footnotesize\ttfamily void elevator\+\_\+control\+\_\+set\+\_\+floor (\begin{DoxyParamCaption}\item[{int}]{floor }\end{DoxyParamCaption})}
+
+
+
+Set variable {\ttfamily m\+\_\+current\+\_\+floor} to {\ttfamily floor} and set correct light on floor panel. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em floor} & Floor integer with which to update {\ttfamily m\+\_\+current\+\_\+floor} and set ligth on floor panel. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 14 of file elevator\+\_\+control.\+c.
+
+\mbox{\Hypertarget{elevator__control_8h_a4f9986dc567a4e6d1a43e9e059855b3f}\label{elevator__control_8h_a4f9986dc567a4e6d1a43e9e059855b3f}} 
+\index{elevator\_control.h@{elevator\_control.h}!elevator\_control\_turn\_off\_button\_lamps@{elevator\_control\_turn\_off\_button\_lamps}}
+\index{elevator\_control\_turn\_off\_button\_lamps@{elevator\_control\_turn\_off\_button\_lamps}!elevator\_control.h@{elevator\_control.h}}
+\doxysubsubsection{\texorpdfstring{elevator\_control\_turn\_off\_button\_lamps()}{elevator\_control\_turn\_off\_button\_lamps()}}
+{\footnotesize\ttfamily void elevator\+\_\+control\+\_\+turn\+\_\+off\+\_\+button\+\_\+lamps (\begin{DoxyParamCaption}\item[{int}]{floor }\end{DoxyParamCaption})}
+
+
+
+Turn off all button lamps in {\ttfamily floor}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em floor} & Floor in which to turn off button lamps. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file elevator\+\_\+control.\+c.
+
+\mbox{\Hypertarget{elevator__control_8h_a4596fc1fc0ebe3cd4931a91f8b20c777}\label{elevator__control_8h_a4596fc1fc0ebe3cd4931a91f8b20c777}} 
+\index{elevator\_control.h@{elevator\_control.h}!run\_elevator\_control\_fsm@{run\_elevator\_control\_fsm}}
+\index{run\_elevator\_control\_fsm@{run\_elevator\_control\_fsm}!elevator\_control.h@{elevator\_control.h}}
+\doxysubsubsection{\texorpdfstring{run\_elevator\_control\_fsm()}{run\_elevator\_control\_fsm()}}
+{\footnotesize\ttfamily void run\+\_\+elevator\+\_\+control\+\_\+fsm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Run finite-\/state machine/ elevator. 
+
+
+
+Definition at line 19 of file elevator\+\_\+control.\+c.
+

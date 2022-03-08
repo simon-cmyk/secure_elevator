@@ -1,0 +1,188 @@
+\hypertarget{timer__control_8h}{}\doxysection{source/timer\+\_\+control.h File Reference}
+\label{timer__control_8h}\index{source/timer\_control.h@{source/timer\_control.h}}
+
+
+A group of functions for controlling the timer module.  
+
+
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}elevator\+\_\+constants.\+h\char`\"{}}\newline
+Include dependency graph for timer\+\_\+control.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtimer__object__st}{timer\+\_\+object\+\_\+st}}
+\begin{DoxyCompactList}\small\item\em Struct to function as timer when elevator is running. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{timer__control_8h_a69ecd0c4af1e6629cac2b9400698e5db}{timer\+\_\+object\+\_\+restart}} (\mbox{\hyperlink{structtimer__object__st}{timer\+\_\+object\+\_\+st}} $\ast$p\+\_\+timer\+\_\+obj)
+\begin{DoxyCompactList}\small\item\em Restart timer in {\ttfamily p\+\_\+timer\+\_\+obj} (inside {\ttfamily p\+\_\+timer\+\_\+obj}). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{timer__control_8h_ae90a2fb94b057f45df5c15544d0a75d4}{timer\+\_\+object\+\_\+is\+\_\+done\+\_\+counting}} (\mbox{\hyperlink{structtimer__object__st}{timer\+\_\+object\+\_\+st}} $\ast$p\+\_\+timer\+\_\+obj)
+\begin{DoxyCompactList}\small\item\em Check if {\ttfamily p\+\_\+timer\+\_\+obj} is done counting (inside {\ttfamily p\+\_\+timer\+\_\+obj}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{timer__control_8h_a0442e721b39ff1161a0fff1a987caee0}{timer\+\_\+object\+\_\+set\+\_\+is\+\_\+active}} (\mbox{\hyperlink{structtimer__object__st}{timer\+\_\+object\+\_\+st}} $\ast$p\+\_\+timer\+\_\+obj, int active)
+\begin{DoxyCompactList}\small\item\em Set variable {\ttfamily is\+\_\+active} in {\ttfamily p\+\_\+timer\+\_\+obj} to {\ttfamily active} (inside {\ttfamily p\+\_\+timer\+\_\+obj}). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{timer__control_8h_acf3508abcef61f107930cd34faf1fe32}{timer\+\_\+control\+\_\+is\+\_\+done\+\_\+counting}} ()
+\begin{DoxyCompactList}\small\item\em Check if {\ttfamily p\+\_\+timer\+\_\+obj} is done counting (outside {\ttfamily p\+\_\+timer\+\_\+obj}). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{timer__control_8h_a5618eaac6c3e5aafeab14a8db03e7c5b}{timer\+\_\+control\+\_\+is\+\_\+active}} ()
+\begin{DoxyCompactList}\small\item\em Set variable {\ttfamily is\+\_\+active} in {\ttfamily p\+\_\+timer\+\_\+obj} to {\ttfamily active} (outside {\ttfamily p\+\_\+timer\+\_\+obj}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{timer__control_8h_a3a16c6e4f4fb7527e92392fa274d9ae3}{timer\+\_\+control\+\_\+set\+\_\+is\+\_\+active}} (int active)
+\begin{DoxyCompactList}\small\item\em Set variable {\ttfamily is\+\_\+active} in {\ttfamily p\+\_\+timer\+\_\+obj} to {\ttfamily active} (outside {\ttfamily p\+\_\+timer\+\_\+obj}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{timer__control_8h_ae58cfe9e9c5bb700d3ac47ca6aa43b29}{timer\+\_\+control\+\_\+restart}} ()
+\begin{DoxyCompactList}\small\item\em Restart timer in {\ttfamily p\+\_\+timer\+\_\+obj} (outside {\ttfamily p\+\_\+timer\+\_\+obj}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A group of functions for controlling the timer module. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{timer__control_8h_a5618eaac6c3e5aafeab14a8db03e7c5b}\label{timer__control_8h_a5618eaac6c3e5aafeab14a8db03e7c5b}} 
+\index{timer\_control.h@{timer\_control.h}!timer\_control\_is\_active@{timer\_control\_is\_active}}
+\index{timer\_control\_is\_active@{timer\_control\_is\_active}!timer\_control.h@{timer\_control.h}}
+\doxysubsubsection{\texorpdfstring{timer\_control\_is\_active()}{timer\_control\_is\_active()}}
+{\footnotesize\ttfamily int timer\+\_\+control\+\_\+is\+\_\+active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set variable {\ttfamily is\+\_\+active} in {\ttfamily p\+\_\+timer\+\_\+obj} to {\ttfamily active} (outside {\ttfamily p\+\_\+timer\+\_\+obj}). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em p\+\_\+timer\+\_\+obj} & Timer object in which to set {\ttfamily is\+\_\+active} to {\ttfamily active}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em active} & Integer/boolean value with which to set {\ttfamily is\+\_\+active} in {\ttfamily p\+\_\+timer\+\_\+obj}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 28 of file timer\+\_\+control.\+c.
+
+\mbox{\Hypertarget{timer__control_8h_acf3508abcef61f107930cd34faf1fe32}\label{timer__control_8h_acf3508abcef61f107930cd34faf1fe32}} 
+\index{timer\_control.h@{timer\_control.h}!timer\_control\_is\_done\_counting@{timer\_control\_is\_done\_counting}}
+\index{timer\_control\_is\_done\_counting@{timer\_control\_is\_done\_counting}!timer\_control.h@{timer\_control.h}}
+\doxysubsubsection{\texorpdfstring{timer\_control\_is\_done\_counting()}{timer\_control\_is\_done\_counting()}}
+{\footnotesize\ttfamily int timer\+\_\+control\+\_\+is\+\_\+done\+\_\+counting (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if {\ttfamily p\+\_\+timer\+\_\+obj} is done counting (outside {\ttfamily p\+\_\+timer\+\_\+obj}). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em p\+\_\+timer\+\_\+obj} & Timer object in which to check if timer is done counting. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if timer is done counting and F\+A\+L\+SE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file timer\+\_\+control.\+c.
+
+\mbox{\Hypertarget{timer__control_8h_ae58cfe9e9c5bb700d3ac47ca6aa43b29}\label{timer__control_8h_ae58cfe9e9c5bb700d3ac47ca6aa43b29}} 
+\index{timer\_control.h@{timer\_control.h}!timer\_control\_restart@{timer\_control\_restart}}
+\index{timer\_control\_restart@{timer\_control\_restart}!timer\_control.h@{timer\_control.h}}
+\doxysubsubsection{\texorpdfstring{timer\_control\_restart()}{timer\_control\_restart()}}
+{\footnotesize\ttfamily void timer\+\_\+control\+\_\+restart (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Restart timer in {\ttfamily p\+\_\+timer\+\_\+obj} (outside {\ttfamily p\+\_\+timer\+\_\+obj}). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em p\+\_\+timer\+\_\+obj} & Timer object in which to restart timer. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 36 of file timer\+\_\+control.\+c.
+
+\mbox{\Hypertarget{timer__control_8h_a3a16c6e4f4fb7527e92392fa274d9ae3}\label{timer__control_8h_a3a16c6e4f4fb7527e92392fa274d9ae3}} 
+\index{timer\_control.h@{timer\_control.h}!timer\_control\_set\_is\_active@{timer\_control\_set\_is\_active}}
+\index{timer\_control\_set\_is\_active@{timer\_control\_set\_is\_active}!timer\_control.h@{timer\_control.h}}
+\doxysubsubsection{\texorpdfstring{timer\_control\_set\_is\_active()}{timer\_control\_set\_is\_active()}}
+{\footnotesize\ttfamily void timer\+\_\+control\+\_\+set\+\_\+is\+\_\+active (\begin{DoxyParamCaption}\item[{int}]{active }\end{DoxyParamCaption})}
+
+
+
+Set variable {\ttfamily is\+\_\+active} in {\ttfamily p\+\_\+timer\+\_\+obj} to {\ttfamily active} (outside {\ttfamily p\+\_\+timer\+\_\+obj}). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em p\+\_\+timer\+\_\+obj} & Timer object in which to set {\ttfamily is\+\_\+active} to {\ttfamily active}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em active} & Integer/boolean value with which to set {\ttfamily is\+\_\+active} in {\ttfamily p\+\_\+timer\+\_\+obj}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 32 of file timer\+\_\+control.\+c.
+
+\mbox{\Hypertarget{timer__control_8h_ae90a2fb94b057f45df5c15544d0a75d4}\label{timer__control_8h_ae90a2fb94b057f45df5c15544d0a75d4}} 
+\index{timer\_control.h@{timer\_control.h}!timer\_object\_is\_done\_counting@{timer\_object\_is\_done\_counting}}
+\index{timer\_object\_is\_done\_counting@{timer\_object\_is\_done\_counting}!timer\_control.h@{timer\_control.h}}
+\doxysubsubsection{\texorpdfstring{timer\_object\_is\_done\_counting()}{timer\_object\_is\_done\_counting()}}
+{\footnotesize\ttfamily int timer\+\_\+object\+\_\+is\+\_\+done\+\_\+counting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtimer__object__st}{timer\+\_\+object\+\_\+st}} $\ast$}]{p\+\_\+timer\+\_\+obj }\end{DoxyParamCaption})}
+
+
+
+Check if {\ttfamily p\+\_\+timer\+\_\+obj} is done counting (inside {\ttfamily p\+\_\+timer\+\_\+obj}). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em p\+\_\+timer\+\_\+obj} & Timer object in which to check if timer is done counting. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if timer is done counting and F\+A\+L\+SE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 13 of file timer\+\_\+control.\+c.
+
+\mbox{\Hypertarget{timer__control_8h_a69ecd0c4af1e6629cac2b9400698e5db}\label{timer__control_8h_a69ecd0c4af1e6629cac2b9400698e5db}} 
+\index{timer\_control.h@{timer\_control.h}!timer\_object\_restart@{timer\_object\_restart}}
+\index{timer\_object\_restart@{timer\_object\_restart}!timer\_control.h@{timer\_control.h}}
+\doxysubsubsection{\texorpdfstring{timer\_object\_restart()}{timer\_object\_restart()}}
+{\footnotesize\ttfamily void timer\+\_\+object\+\_\+restart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtimer__object__st}{timer\+\_\+object\+\_\+st}} $\ast$}]{p\+\_\+timer\+\_\+obj }\end{DoxyParamCaption})}
+
+
+
+Restart timer in {\ttfamily p\+\_\+timer\+\_\+obj} (inside {\ttfamily p\+\_\+timer\+\_\+obj}). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em p\+\_\+timer\+\_\+obj} & Timer object in which to restart timer. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 7 of file timer\+\_\+control.\+c.
+
+\mbox{\Hypertarget{timer__control_8h_a0442e721b39ff1161a0fff1a987caee0}\label{timer__control_8h_a0442e721b39ff1161a0fff1a987caee0}} 
+\index{timer\_control.h@{timer\_control.h}!timer\_object\_set\_is\_active@{timer\_object\_set\_is\_active}}
+\index{timer\_object\_set\_is\_active@{timer\_object\_set\_is\_active}!timer\_control.h@{timer\_control.h}}
+\doxysubsubsection{\texorpdfstring{timer\_object\_set\_is\_active()}{timer\_object\_set\_is\_active()}}
+{\footnotesize\ttfamily void timer\+\_\+object\+\_\+set\+\_\+is\+\_\+active (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtimer__object__st}{timer\+\_\+object\+\_\+st}} $\ast$}]{p\+\_\+timer\+\_\+obj,  }\item[{int}]{active }\end{DoxyParamCaption})}
+
+
+
+Set variable {\ttfamily is\+\_\+active} in {\ttfamily p\+\_\+timer\+\_\+obj} to {\ttfamily active} (inside {\ttfamily p\+\_\+timer\+\_\+obj}). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em p\+\_\+timer\+\_\+obj} & Timer object in which to set {\ttfamily is\+\_\+active} to {\ttfamily active}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em active} & Integer/boolean value with which to set {\ttfamily is\+\_\+active} in {\ttfamily p\+\_\+timer\+\_\+obj}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 20 of file timer\+\_\+control.\+c.
+
