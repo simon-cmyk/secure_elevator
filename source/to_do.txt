@@ -7,4 +7,5 @@
 -doxygen-dokumentasjon
 -teste systemet
 * sjekk om knapp lyser dersom man trykker mens døra er åpen.
+updatere readme.me
 
