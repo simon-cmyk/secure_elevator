@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "elevator_constants.h"
 
-queue_object_st m_queue_list = {{NO_ORDER}, {NO_ORDER}, {NO_ORDER}, 0};
+static queue_object_st m_queue_list = {{NO_ORDER}, {NO_ORDER}, {NO_ORDER}, 0};
 
 void queue_control_place_order(int floor,  ButtonType button_type){
     queue_object_place_order_in_queue(&m_queue_list, floor, button_type);

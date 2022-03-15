@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-timer_object_st m_timer = {.is_active = FALSE};
+static timer_object_st m_timer = {.is_active = FALSE};
 
 void timer_object_restart(timer_object_st * p_timer_obj){
     time_t time_now;

@@ -7,8 +7,8 @@
 #include <assert.h>
 
 
-double m_current_floor; 
-int m_destination_floor;
+static double m_current_floor; 
+static int m_destination_floor;
 elevator_fsm_states_et m_current_elevator_state = AT_REST_CLOSED_DOOR;
 
 void elevator_control_set_floor(int floor){

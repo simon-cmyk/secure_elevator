@@ -5,3 +5,6 @@ endre navn
 below eller above på priorities?
 Dokumenter structs !!! Hva i svarte "#¤%&!/
 filnavn i doxygen?
+
+self-contained, svakhet
+m_ og static
