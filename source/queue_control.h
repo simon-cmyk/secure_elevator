@@ -70,7 +70,7 @@ void queue_control_place_order(int floor,  ButtonType button_type);
 int queue_control_get_next_order();
 
 /**
- * @brief Remove all elevator orders with @floor as destination floor. 
+ * @brief Remove all elevator orders with @p floor as destination floor. 
  * 
  * @param[in] floor                 Floor from which to remove all orders. 
  */

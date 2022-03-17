@@ -47,7 +47,7 @@ int timer_object_is_done_counting(timer_object_st* p_timer_obj);
 void timer_object_set_is_active(timer_object_st* p_timer_obj, int active);
 
 /**
- * @brief Check if @p p_timer_obj is done counting (outside @p p_timer_obj ).
+ * @brief Check if timer is done. Typically used from another module
  * 
  * @param[in, out] p_timer_obj      Timer object in which to check if timer is done counting. 
  * @return TRUE if timer is done counting and FALSE otherwise. 
@@ -55,24 +55,21 @@ void timer_object_set_is_active(timer_object_st* p_timer_obj, int active);
 int timer_control_is_done_counting();
 
 /**
- * @brief Set variable @c is_active in @p p_timer_obj to @p active (outside @p p_timer_obj ).
+ * @brief checks if the timer is currently active, to decide if one should use it.
  * 
- * @param[out] p_timer_obj          Timer object in which to set @c is_active to @p active.
- * @param[in] active                Integer/boolean value with which to set @c is_active in @p p_timer_obj.
+ * @return 1 if it is active, otherwise 0
  */
 int timer_control_is_active();
 
 /**
- * @brief Set variable @c is_active in @p p_timer_obj to @p active (outside @p p_timer_obj ).
- * 
- * @param[out] p_timer_obj          Timer object in which to set @c is_active to @p active.
- * @param[in] active                Integer (boolean) value with which to set @c is_active in @p p_timer_obj.
+ * @brief Set timer active or not based on the value of @p active 
+ *  
+ * @param[in] active                Integer (boolean) value with which to set the member variable of a timer
  */
 void timer_control_set_is_active(int active);
 
 /**
- * @brief Restart timer in @p p_timer_obj (outside @p p_timer_obj ).
+ * @brief Restart timer, to start counting from start again.
  * 
- * @param[out] p_timer_obj          Timer object in which to restart timer.
  */
 void timer_control_restart();
