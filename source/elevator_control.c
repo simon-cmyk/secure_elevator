@@ -4,10 +4,9 @@
 #include "queue_control.h"
 #include "driver/elevio.h"
 #include "timer_control.h"
-#include <assert.h>
 
 
-static double m_current_floor; 
+static float m_current_floor; 
 static int m_destination_floor;
 elevator_fsm_states_et m_current_elevator_state = AT_REST_CLOSED_DOOR;
 

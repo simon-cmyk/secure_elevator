@@ -56,8 +56,8 @@ int main(){
 }
 
 void initialize_elevator_to_start_floor(){
-    for(int floor = 0; floor < N_FLOORS; floor++){
-        elevator_control_turn_off_button_lamps(floor);
+    for(int floor_nr = 0; floor_nr < N_FLOORS; floor_nr++){
+        elevator_control_turn_off_button_lamps(floor_nr);
     }
     elevio_doorOpenLamp(OFF);
     elevio_motorDirection(DIRN_DOWN);

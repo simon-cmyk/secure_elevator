@@ -8,3 +8,4 @@ filnavn i doxygen?
 
 self-contained, svakhet
 m_ og static
+Kommenter at vi har hatt med assert

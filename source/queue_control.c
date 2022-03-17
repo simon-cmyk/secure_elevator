@@ -81,7 +81,7 @@ void queue_control_remove_orders_from_floor(int floor){
 }
 
 int queue_control_update_next_destination_up(int current_floor, int destination_floor){
-    for (int floor_nr = current_floor +1; floor_nr < destination_floor; floor_nr++)
+    for (int floor_nr = current_floor + 1; floor_nr < destination_floor; floor_nr++)
     {
         if (m_queue_list.orders_up_from_hall[floor_nr] != NO_ORDER || m_queue_list.orders_from_inside_cab[floor_nr] != NO_ORDER)
         {
