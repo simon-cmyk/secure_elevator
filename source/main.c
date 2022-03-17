@@ -4,7 +4,6 @@
 #include <time.h>
 #include "driver/elevio.h"
 #include "elevator_control.h"
-#include "queue_control.h"
 #include "elevator_constants.h"
 
 void initialize_elevator_to_start_floor();

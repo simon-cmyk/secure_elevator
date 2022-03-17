@@ -1,9 +1,10 @@
+/** @file
+ * @brief A module for constants used in other files, defined as macros.
+ * This is to avoid magic numbers (for readability), and make it easier for developer to implement changes.
+ */
 #pragma once
 #include <stdio.h>
 #include <stdlib.h>
-// Constants used to improve readability and 
-// and make it easier to 
-//change the system
 
 // Variables that can easily be changed 
 #define TIMER_SECONDS_BEFORE_DONE 3.0

@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "elevator_control.h"
-#include "queue_control.h"
-#include "driver/elevio.h"
-#include "timer_control.h"
 
 
 static float m_current_floor; 

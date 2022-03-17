@@ -1,6 +1,4 @@
 #include "queue_control.h"
-#include <stdio.h>
-#include "elevator_constants.h"
 
 static queue_object_st m_queue_list = {{NO_ORDER}, {NO_ORDER}, {NO_ORDER}, 0};
 

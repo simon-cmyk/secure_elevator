@@ -1,6 +1,4 @@
 #include "timer_control.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 static timer_object_st m_timer = {.is_active = FALSE};
 

@@ -1,10 +1,11 @@
 /** @file
- * @brief A group of functions for performing operations on queue module
+ * @brief A group of functions for performing operations on the queue module
+ * functions with prefix queue_control can be called from other modules, whilst
+ * queue_object functions should be internal
  */
 
 #pragma once
 #include "driver/elevio.h"
-#include "elevator_control.h"
 #include "elevator_constants.h"
 
 /** 
@@ -14,6 +15,7 @@
  * @param orders_up_from_hall       An array containing orders to go up from floor panel.
  * @param orders_up_down_hall       An array containing orders to go down from floor panel.
  * @param number_of_active_orders   An integer that corresponds to the number of active orders in queue.
+ *                                  often used to set priorities.
  */
 typedef struct 
 {
@@ -38,7 +40,9 @@ void queue_object_place_order_in_queue(queue_object_st *p_queue_object, int floo
  * @param[out] p_queue_object       Queue object from which to remove order.
  * @param[in] floor                 Destination floor of order to be removed. 
  * @param[in] button_type           Type of button when initiating order to be removed
- * @param[in] priority_threshold    Threshold to determine the orders that need to be decremented in order to update priorities of existing orders in @p p_queue_object after order is removed.
+ * @param[in] priority_threshold    Threshold to determine the orders that need to be decremented in order to update 
+ *                                  priorities of existing orders in @p p_queue_object after order is removed. 
+ *                                  basically the priority of the order to be removed.
  */
 void queue_object_remove_order(queue_object_st *p_queue_object, int floor,  ButtonType button_type, int priority_threshold);
 

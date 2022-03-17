@@ -1,13 +1,16 @@
 /**
  * @file
- * @brief A group of functions for controlling the elevator. 
+ * @brief A group of functions for controlling the elevator.  
  */
 
 #pragma once
-
+#include "queue_control.h"
+#include "timer_control.h"
+#include "driver/elevio.h"
+#include "elevator_constants.h"
 /**
  * @brief Run finite-state machine/ elevator.
- * 
+ * this is a switch loop checking the state of the state machine, and making actions/transitions accordingly.
  */
 void run_elevator_control_fsm();
 
@@ -28,37 +31,37 @@ void elevator_control_turn_off_button_lamps(int floor);
 
 /**
  * @brief Change state in finite-state machine to @c AT_REST_CLOSED_DOOR in case stop button is pressed.
- * 
+ * can be called from all states
  */
 void change_state_stop_button_pressed();
 
 /**
  * @brief Change state in finite-state machine to @c AT_REST_CLOSED_DOOR.
- * 
+ * can be called from @c TRAVELLING_UP and @c TRAVELLING_DOWN
  */
 void change_state_stop_at_floor();
 
 /**
  * @brief Change state in finite-state machine to @c TRAVELING_UP.
- * 
+ * can be called from @c AT_REST_CLOSED_DOOR
  */
 void change_state_start_travel_up();
 
 /**
  * @brief Change state in finite-state machine to @c TRAVELING_DOWN.
- * 
+ * can be called from @c AT_REST_CLOSED_DOOR
  */
 void change_state_start_travel_down();
 
 /**
  * @brief Change state in finite-state machine to @c AT_REST_OPEN_DOOR.
- * 
+ * can be called from @c AT_REST_CLOSED_DOOR and from pushing stop button while at a valid floor.
  */
 void change_state_open_door();
 
 /**
  * @brief Change state in finite-state machine to @c AT_REST_CLOSED_DOOR
- * 
+ * can be called from @c AT_REST_OPEN_DOOR
  */
 void change_state_close_door();
 

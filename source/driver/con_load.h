@@ -1,4 +1,6 @@
-
+/** @file
+ * @brief file with macro-functions for loading from a config file
+ */
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
@@ -59,7 +61,7 @@
     }                                                       \
 }
 
-
+// macro-functions
 #define con_val(key, var, fmt)                              \
     if(!strcasecmp(_key, key)){                             \
         sscanf(_val, fmt, var);                             \
